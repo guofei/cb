@@ -1,4 +1,16 @@
 CampusBox::Application.routes.draw do
+  devise_for :users
+
+  resources :categories
+
+  resources :orders
+
+  resources :commodities
+
+  resources :commoditycates
+
+  resources :ordercommodities
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
