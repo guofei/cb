@@ -20,6 +20,11 @@
   <%= @commodity.price %>
 </p>
 
+<%= render 'comments/form' %>
+
+<p>
+<%= link_to 'Buy', new_order_path %>
+</p>
 
 <%= link_to 'Edit', edit_commodity_path(@commodity) %> |
 <%= link_to 'Back', commodities_path %>

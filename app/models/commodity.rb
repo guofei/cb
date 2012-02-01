@@ -4,4 +4,6 @@ class Commodity < ActiveRecord::Base
 
   has_many :order_commodities
   has_many :orders, :through => :order_commodities
+
+  has_many :comments
 end

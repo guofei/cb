@@ -14,7 +14,8 @@ class CommoditiesController < ApplicationController
   # GET /commodities/1.json
   def show
     @commodity = Commodity.find(params[:id])
-
+    @comment = Comment.new
+    @comment.commodity = @commodity
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @commodity }
