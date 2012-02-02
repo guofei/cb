@@ -1,19 +1,24 @@
 CampusBox::Application.routes.draw do
-  resources :comments
-
   get "home/index"
-
-  devise_for :users
 
   resources :categories
 
   resources :orders
 
-  resources :commodities
+  resources :commodities do
+    resources :comments
+  end
 
   resources :commoditycates
 
   resources :ordercommodities
+
+  devise_for :users, :controllers => {
+    :registrations => "registrations",
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  } do
+    get "logout" => "devise/sessions#destroy"
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

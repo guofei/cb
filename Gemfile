@@ -9,6 +9,11 @@ gem 'mysql2'
 
 gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem "omniauth-openid"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
