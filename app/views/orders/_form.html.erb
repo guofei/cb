@@ -12,12 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.number_field :name %>
+    <%= f.hidden_field :price %>
   </div>
   <div class="field">
-    <%= f.label :price %><br />
-    <%= f.number_field :price %>
+    <%= hidden_field_tag :commodity_id, @commodity.id, :id => "commodity" %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -40,11 +40,16 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(params[:order])
+    @commodity = Commodity.find(params[:commodity_id])
+    @order = Order.new(params["order"["price"]])
     @order.user = current_user
+    @order.name = Time.now.to_i
+    @order.price = @commodity.price
 
     respond_to do |format|
       if @order.save
+        @order.order_commodities.create(:commodity => @commodity)
+        @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else

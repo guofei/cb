@@ -16,6 +16,9 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.find(params[:id])
     @comment = Comment.new
     @comment.commodity = @commodity
+
+    @order = Order.new
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @commodity }

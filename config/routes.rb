@@ -1,8 +1,6 @@
 CampusBox::Application.routes.draw do
   get "home/index"
 
-  devise_for :users
-
   resources :categories
 
   resources :orders
@@ -16,7 +14,6 @@ CampusBox::Application.routes.draw do
   resources :ordercommodities
 
   devise_for :users, :controllers => {
-    :registrations => "registrations",
     :omniauth_callbacks => "users/omniauth_callbacks"
   } do
     get "logout" => "devise/sessions#destroy"
