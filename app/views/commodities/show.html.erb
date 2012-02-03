@@ -23,7 +23,7 @@
 <% @commodity.comments.each do |comment| %>
   <tr>
     <th>......<br /></th>
-    <th><%= comment.user %></th>
+    <th><%= comment.user.email %></th>
     <th><%= comment.content %><br /></th>
     <th>......<br /></th>
   </tr>

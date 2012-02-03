@@ -7,15 +7,12 @@ class User
         uid = response["uid"]
         data = response["info"]
 
-        if user = User.where(:authorizations.provider => provider , :authorizations.uid => uid).first
-          use.testtttt()
+        if user = User.includes(:authorizations).where("authorizations.provider" => provider , "authorizations.uid" => uid).first
           user
         elsif user = User.find_by_email(data["email"])
-          use.testtttt()
           user.bind_service(response)
           user
         else
-          use.testtttt()
           user = User.new_from_provider_data(provider,uid,data)
 
           if user.save(:validate => false)
@@ -34,7 +31,7 @@ class User
     def new_from_provider_data(provider, uid, data)
       user = User.new
       user.email = data["email"]
-      user.email = "twitter+#{uid}@example.com" if provider == "twitter"
+      user.email = "twitter+#{uid}@twitter.com" if provider == "twitter"
 
       user.password = Devise.friendly_token[0,20]
 
