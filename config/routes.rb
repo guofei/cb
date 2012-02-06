@@ -1,5 +1,9 @@
 CampusBox::Application.routes.draw do
+  resources :schools
+
   get "home/index"
+  match "search" => "home#search", :as => :top, :via => :post
+  #post "home/search"
 
   resources :categories
 

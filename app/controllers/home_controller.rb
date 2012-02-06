@@ -8,4 +8,9 @@ class HomeController < ApplicationController
       format.json { render json: @commodities }
     end
   end
+
+  def search
+    @result = Commodity.find(:all, :conditions => ["name like ?", "%#{params[:keyword]}%"])
+    render :index
+  end
 end

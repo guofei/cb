@@ -19,3 +19,6 @@
 
 # Ignore emacs tempfiles.
 *~
+
+
+*.DS_Store

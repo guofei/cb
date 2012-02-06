@@ -2,7 +2,7 @@ class CommoditiesController < ApplicationController
   # GET /commodities
   # GET /commodities.json
   def index
-    @commodities = Commodity.all
+    @commodities = current_user.commodities
 
     respond_to do |format|
       format.html # index.html.erb
