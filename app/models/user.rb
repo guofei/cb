@@ -12,5 +12,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :authorizations
 
+  belongs_to :school
+
   extend OmniauthCallbacks
 end
