@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% i = whoami? current_user, @commodity %>
+
+<p>i am <%= i %></p>
+
 <p>
   <b>Name:</b>
   <%= @commodity.name %>
@@ -20,6 +24,11 @@
   <%= @commodity.price %>
 </p>
 
+<% if i == 'seller' %>
+  <%= render 'seller' %>
+<% end %>
+
+<h2>comments</h2>
 <% @commodity.comments.each do |comment| %>
   <tr>
     <th>......<br /></th>
@@ -31,7 +40,9 @@
 
 <%= render 'comments/form' %>
 
-<%= render 'orders/form' %>
+<% if i != 'seller' %>
+  <%= render 'orders/form' %>
+<% end %>
 
 <%= link_to 'Edit', edit_commodity_path(@commodity) %> |
 <%= link_to 'Back', commodities_path %>

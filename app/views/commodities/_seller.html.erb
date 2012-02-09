@@ -1,0 +1,8 @@
+<h2>these people want to buy</h2>
+<p>
+<% @commodity.orders.each do |order| %>
+  <tr>
+    <th><%= order.user.email %></th><br />
+  </tr>
+<% end %>
+</p>
