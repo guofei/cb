@@ -1,0 +1,8 @@
+$(function($){
+      $('#search')
+          .bind("ajax:complete", function(){
+		    $('#result_form').html(
+			"<%= escape_javascript(render :partial => 'search_result') %>"
+		    );
+		});
+  });

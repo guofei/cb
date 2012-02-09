@@ -17,12 +17,18 @@
 	<p class="logo"><a href="/">CampusBox</a></p>
 	<!-- ナビゲーション -->
 	<ul class="header-navi">
-	  <li><a href="/">Home</a></li>
-	  <li><a href="#">*** リンク ***</a></li>
+	  <% if !user_signed_in? %>
+	    <%= link_to(image_tag('facebook-login-button.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %>
+	  <% end %>
+	  <% if !user_signed_in? %>
+	    <li><%= link_to('Login with twitter', omniauth_authorize_path(:user, :twitter)) %></li><br />
+	  <% end %>
+	  <% if !user_signed_in? %>
+	    <li><%= link_to('if you have not face or twitter', new_user_session_path) %></li>
+	  <% end %>
 	  <% if user_signed_in? %>
 	    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 	  <% end %>
-
 	</ul>
       </div>
       <!-- // header end -->
@@ -40,24 +46,20 @@
 
 <div id="sidebar">
   <!-- サイドバーここから -->
-
-  <p class="side-title">Buyer</p>
+  <% if user_signed_in? %>
+  <p class="side-title">I am Buyer</p>
   <ul class="localnavi">
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
+    <li><%= link_to('Search', '/') %></li>
+    <li><%= link_to('My Order', :orders) %></li>
   </ul>
-  <p class="side-title">Seller</p>
+  <p class="side-title">I am Seller</p>
   <ul class="localnavi">
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
-    <li><a href="#">*** リンク ***</a></li>
+    <li><%= link_to('Sell', :new_commodity) %></li>
+    <li><%= link_to('My Goods', :commodities) %></li>
   </ul>
-
+  <% else %>
+    <p>box image</p>
+  <% end %>
   <!-- サイドバーここまで -->
 </div><!-- sidebar end -->
 <!-- ↓削除不可 -->

@@ -1,0 +1,13 @@
+<% if @result %>
+  <% if @result.count == 0 %>
+    <div>nothing</div>
+  <% else %>
+    <% @result.each do |commodity| %>
+      <div><%= link_to("#{commodity.name}", commodity) %></div>
+      <div>number:<%= commodity.num %></div>
+      <div>descption:<%= commodity.desc %></div>
+    <% end %>
+  <% end %>
+<% else %>
+  <div>nothing</div>
+<% end %>

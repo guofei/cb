@@ -1,3 +1,4 @@
+<h2>selling</h2>
 <table>
   <tr>
     <th>Name</th>
@@ -10,7 +11,33 @@
     <th></th>
   </tr>
 
-<% @commodities.each do |commodity| %>
+<% @selling.each do |commodity| %>
+  <tr>
+    <td><%= commodity.name %></td>
+    <td><%= commodity.num %></td>
+    <td><%= commodity.desc %></td>
+    <td><%= commodity.price %></td>
+    <td><%= link_to 'Show', commodity %></td>
+    <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
+    <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>selled</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Num</th>
+    <th>Desc</th>
+    <th>Price</th>
+    <th>References</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @selled.each do |commodity| %>
   <tr>
     <td><%= commodity.name %></td>
     <td><%= commodity.num %></td>

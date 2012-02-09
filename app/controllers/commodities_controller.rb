@@ -1,9 +1,12 @@
 class CommoditiesController < ApplicationController
+  skip_before_filter :authenticate_user!, only: %w[show]
+
   # GET /commodities
   # GET /commodities.json
   def index
     @commodities = current_user.commodities
-
+    @selled = @commodities.where(:num => 0)
+    @selling = @commodities.where("num > ?", 0)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @commodities }
