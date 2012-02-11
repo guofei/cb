@@ -30,18 +30,16 @@
 
 <h2>comments</h2>
 <% @commodity.comments.each do |comment| %>
-  <tr>
-    <th>......<br /></th>
-    <th><%= comment.user.email %></th>
-    <th><%= comment.content %><br /></th>
-    <th>......<br /></th>
-  </tr>
+  <%= comment.user.email %> said:
+  <p>
+  <%= comment.content %>
+  </p>
 <% end %>
 
 <%= render 'comments/form' %>
 
-<% if i != 'seller' %>
-  <%= render 'orders/form' %>
+<% if i != 'seller' and i != 'buyer' %>
+  <%= render 'orders/form', :order => @order%>
 <% end %>
 
 <%= link_to 'Edit', edit_commodity_path(@commodity) %> |

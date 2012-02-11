@@ -13,6 +13,7 @@
 
   <div class="field">
     <%= f.label 'leave a comment' %><br />
+    <%= f.select :state, {'show all' => 1, 'show secret' => 0} %><br />
     <%= f.text_area :content %>
   </div>
   <div class="actions">

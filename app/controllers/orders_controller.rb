@@ -59,18 +59,46 @@ class OrdersController < ApplicationController
     end
   end
 
+  def deal
+    @order = Order.find(params[:id])
+
+    respond_to do |format|
+      #Fix Me:must be changed at same time
+      if @order.update_attributes(params[:order])
+        @order.commodities.each { |commodity|
+          commodity.num -= 1
+          commodity.save
+        }
+      #   format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+      #   format.json { head :no_content }
+      # else
+      #   format.html { render action: "edit" }
+      #   format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PUT /orders/1
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
 
     respond_to do |format|
+      #Fix Me:must be changed at same time
       if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        @order.commodities.each { |commodity|
+          commodity.num -= 1
+          commodity.save
+        }
+        respond_to do |format|
+          format.js { render 'deal' }
+        end
+
+      #   format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+      #   format.json { head :no_content }
+      # else
+      #   format.html { render action: "edit" }
+      #   format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end

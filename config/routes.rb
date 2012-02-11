@@ -7,7 +7,9 @@ CampusBox::Application.routes.draw do
 
   resources :categories
 
-  resources :orders
+  resources :orders do
+    post 'deal', :on => :member
+  end
 
   resources :commodities do
     resources :comments
