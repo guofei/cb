@@ -1,1 +1,8 @@
-alert('hi');
+$(function($){
+      $('#dealorder')
+          .bind("ajax:complete", function(){
+		    $('#state').html(
+			'ok'
+		    );
+		});
+  });

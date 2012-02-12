@@ -4,8 +4,7 @@
   <% order.state = true %>
   <tr>
     <th><%= order.user.email %></th>
-    <th><%= render 'orders/form', :order => order %></th>
-    <th><div id="state"></div></th>
+    <th><div id="state"><%= render 'orders/dealform', :order => order %></div></th>
     <br />
   </tr>
 <% end %>
