@@ -30,11 +30,19 @@
 
 <h2>comments</h2>
 <% @commodity.comments.each do |comment| %>
-  <%= comment.user.email %> said:
-  <p>
-  <%= comment.content %>
-  </p>
+  <% current_user_id = -1 %>
+  <% current_user_id = current_user.id if user_signed_in? %>
+  <%if comment.state == true or i == 'seller' or comment.replyto == current_user_id or comment.user.id == current_user_id %>
+    <%= comment.user.email %> said:
+    <p>
+      <%= comment.content %>
+    </p>
+    <p>
+      <button onclick="document.getElementById('comment_content').value='Reply <%=comment.user.email %>: '">Reply</button>
+    </p>
+  <% end %>
 <% end %>
+
 
 <%= render 'comments/form' %>
 

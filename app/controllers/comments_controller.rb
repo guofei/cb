@@ -41,6 +41,11 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    email = params[:comment_replyto]
+    if user = User.find_by_email(email)
+      @comment.replyto = user.id
+    end
+
     @comment.commodity_id = params[:commodity_id]
     @comment.user = current_user
     respond_to do |format|

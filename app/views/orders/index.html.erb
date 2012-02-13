@@ -1,6 +1,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>ID</th>
     <th>Price</th>
     <th>References</th>
     <th></th>
@@ -10,6 +11,7 @@
 
 <% @orders.each do |order| %>
   <tr>
+    <td><%= order.commodity.name %></td>
     <td><%= order.name %></td>
     <td><%= order.price %></td>
     <td><%= link_to 'Show', order %></td>

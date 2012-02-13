@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211145829) do
+ActiveRecord::Schema.define(:version => 20120213114443) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120211145829) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.boolean  "state"
+    t.integer  "replyto"
   end
 
   add_index "comments", ["commodity_id"], :name => "index_comments_on_commodity_id"
@@ -56,23 +57,14 @@ ActiveRecord::Schema.define(:version => 20120211145829) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "order_commodities", :force => true do |t|
-    t.integer  "order_id"
-    t.integer  "commodity_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "order_commodities", ["commodity_id"], :name => "index_order_commodities_on_commodity_id"
-  add_index "order_commodities", ["order_id"], :name => "index_order_commodities_on_order_id"
-
   create_table "orders", :force => true do |t|
     t.integer  "name"
     t.integer  "price"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.boolean  "state"
+    t.integer  "commodity_id"
   end
 
   create_table "schools", :force => true do |t|

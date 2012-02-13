@@ -1,11 +1,13 @@
 <h2>these people want to buy</h2>
 <p>
 <% @commodity.orders.each do |order| %>
-  <% order.state = true %>
-  <tr>
-    <th><%= order.user.email %></th>
-    <th><div id="state"><%= render 'orders/dealform', :order => order %></div></th>
-    <br />
-  </tr>
+  <p>
+    <%= order.user.email %>
+    <% if !order.state %>
+      <div id="state"><%= render 'orders/dealform', :order => order %></div>
+    <% else %>
+      <div id="state">ok!</div>
+    <% end %>
+  </p>
 <% end %>
 </p>

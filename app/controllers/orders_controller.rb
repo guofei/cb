@@ -48,8 +48,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        @order.order_commodities.create(:commodity => @commodity)
-        @order.save
+        @commodity.orders << @order
+        @commodity.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
@@ -61,14 +61,14 @@ class OrdersController < ApplicationController
 
   def deal
     @order = Order.find(params[:id])
-    #Fix Me:must be changed at same time
-    if @order.update_attributes(params[:order])
-      @order.commodities.each { |commodity|
-        commodity.num -= 1
-        commodity.save
-      }
-      respond_to do |format|
-        format.js {render :content_type => 'text/javascript'}
+
+    if @order.commodity.num > 0
+      @order.commodity.num -=1
+      return nil if !@order.commodity.save
+      if @order.update_attributes(params[:order])
+        respond_to do |format|
+          format.js
+        end
       end
     end
   end
