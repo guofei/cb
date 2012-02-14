@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213114443) do
+ActiveRecord::Schema.define(:version => 20120213175010) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(:version => 20120213114443) do
     t.boolean  "state"
     t.integer  "commodity_id"
   end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "nickname"
+    t.integer  "tel"
+    t.string   "mail"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "schools", :force => true do |t|
     t.string   "name"

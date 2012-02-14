@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :comments
   has_many :authorizations
-
+  has_one :profile
   belongs_to :school
 
   extend OmniauthCallbacks

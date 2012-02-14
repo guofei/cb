@@ -1,4 +1,6 @@
 CampusBox::Application.routes.draw do
+  resources :profiles
+
   resources :schools
 
   get "home/index"

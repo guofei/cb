@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :check_profile
   # GET /comments
   # GET /comments.json
   def index

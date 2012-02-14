@@ -1,5 +1,6 @@
 class CommoditiesController < ApplicationController
-  skip_before_filter :authenticate_user!, only: %w[show]
+  before_filter :check_profile
+  skip_before_filter :authenticate_user!, :only => ['show']
 
   # GET /commodities
   # GET /commodities.json

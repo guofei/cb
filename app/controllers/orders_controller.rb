@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :check_profile
   # GET /orders
   # GET /orders.json
   def index

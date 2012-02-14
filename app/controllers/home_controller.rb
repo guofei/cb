@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :check_profile
   skip_before_filter :authenticate_user!
   def index
     @commodities = Commodity.all
