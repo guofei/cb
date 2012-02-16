@@ -1,4 +1,6 @@
 class Commodity < ActiveRecord::Base
+  mount_uploader :photo, PhotoUploader
+
   has_many :commodity_cates
   has_many :categories, :through => :commodity_cates
 

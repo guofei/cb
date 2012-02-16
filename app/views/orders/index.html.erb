@@ -3,7 +3,7 @@
     <th>Name</th>
     <th>ID</th>
     <th>Price</th>
-    <th>References</th>
+    <th>state</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,9 +14,10 @@
     <td><%= order.commodity.name %></td>
     <td><%= order.name %></td>
     <td><%= order.price %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= if order.state then 'ok' else 'wait' end %></td>
+    <!--<td><%= link_to 'Show', order %></td>
+    <td><%= link_to 'Edit', edit_order_path(order) %></td>-->
+    <td><%= link_to 'cancel', order, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

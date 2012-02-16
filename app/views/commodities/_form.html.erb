@@ -24,6 +24,11 @@
     <%= f.text_area :desc %>
   </div>
   <div class="field">
+    <%= label_tag :image %><br />
+    <%= f.file_field :photo %>
+    <%= f.hidden_field :photo_cache %>
+  </div>
+  <div class="field">
     <%= f.label :price %><br />
     <%= f.number_field :price %>
   </div>
