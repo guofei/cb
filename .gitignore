@@ -20,5 +20,5 @@
 # Ignore emacs tempfiles.
 *~
 
-
+/public/uploads/*.*
 *.DS_Store
