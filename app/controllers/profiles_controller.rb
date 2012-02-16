@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new.json
   def new
     @profile = Profile.new
+    @schools = School.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,12 +35,15 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    @schools = School.all
     @profile = Profile.find(params[:id])
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
+    current_user.school = School.find(params[:school])
+    current_user.save
     @profile = Profile.new(params[:profile])
     @profile.user = current_user
     respond_to do |format|
@@ -56,6 +60,9 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.json
   def update
+    current_user.school = School.find(params[:school])
+    current_user.save
+
     @profile = Profile.find(params[:id])
 
     respond_to do |format|

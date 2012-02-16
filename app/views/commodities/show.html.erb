@@ -32,7 +32,8 @@
 <% @commodity.comments.each do |comment| %>
   <% current_user_id = -1 %>
   <% current_user_id = current_user.id if user_signed_in? %>
-  <%if comment.state == true or i == 'seller' or comment.replyto == current_user_id or comment.user.id == current_user_id %>
+  <% debugger %>
+  <% if comment.state == true or i == 'seller' or comment.replyto == current_user_id or comment.user.id == current_user_id %>
     <%= comment.user.email %> said:
     <p>
       <%= comment.content %>

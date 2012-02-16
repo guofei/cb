@@ -20,6 +20,10 @@
     <%= f.text_field :nickname %>
   </div>
   <div class="field">
+    <%=label_tag :school %><br />
+    <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
+  </div>
+  <div class="field">
     <%= f.label :tel %><br />
     <%= f.number_field :tel %>
   </div>
