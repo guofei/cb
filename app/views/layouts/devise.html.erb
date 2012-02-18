@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>CampusBox</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "devise", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
@@ -49,10 +49,6 @@
 <div id="sidebar">
   <!-- サイドバーここから -->
   <% if user_signed_in? %>
-  <p class="side-title">MyPage</p>
-  <ul class="localnavi">
-    <li><%= link_to('MyPage', :mypage_index) %></li>
-  </ul>
   <p class="side-title">I am Buyer</p>
   <ul class="localnavi">
     <li><%= link_to('Search', '/') %></li>

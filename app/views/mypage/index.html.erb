@@ -1,0 +1,43 @@
+<h2>New Commodities</h2>
+<table>
+  <tr>
+    <th>Name,</th>
+    <th>Num,</th>
+    <th>Price,</th>
+    <th>number of buyers,</th>
+    <th>number of comments</th>
+  </tr>
+
+<% @new_commodities.each do |commodity| %>
+  <tr>
+    <td><%= link_to commodity.name, commodity %></td>
+    <td><%= commodity.num %></td>
+    <td><%= commodity.price %></td>
+    <td><%= commodity.orders.length %></t>
+    <td><%= commodity.comments.length %></t>
+  </tr>
+<% end %>
+</table>
+
+
+<h2>New Orders</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+    <th>Price</th>
+    <th>want</th>
+    <th>state</th>
+  </tr>
+
+<% @new_orders.each do |order| %>
+  <tr>
+    <td><%= link_to order.commodity.name, order %></td>
+    <td><%= order.name %></td>
+    <td><%= order.price %></td>
+    <td><%= order.commodity.orders.length %></td>
+    <td><%= if order.state then 'ok' else 'wait' end %></td>
+    <td><%= link_to 'cancel', order, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
