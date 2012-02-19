@@ -11,7 +11,7 @@
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= order.commodity.name %></td>
+    <td><%= link_to order.commodity.name, order.commodity%></td>
     <td><%= order.name %></td>
     <td><%= order.price %></td>
     <td><%= if order.state then 'ok' else 'wait' end %></td>
