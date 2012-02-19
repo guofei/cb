@@ -1,7 +1,7 @@
 <h2>Search</h2>
 
 <p>
-<%= form_tag("search", :remote => true, :id => "search") do %>
+<%= form_tag("search", :method => :get) do %>
   <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
   <%= search_field_tag "keyword" %>
   <%= submit_tag "search" %>

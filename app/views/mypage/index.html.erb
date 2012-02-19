@@ -32,7 +32,7 @@
 
 <% @new_orders.each do |order| %>
   <tr>
-    <td><%= link_to order.commodity.name, order %></td>
+    <td><%= link_to order.commodity.name, order.commodity %></td>
     <td><%= order.name %></td>
     <td><%= order.price %></td>
     <td><%= order.commodity.orders.length %></td>

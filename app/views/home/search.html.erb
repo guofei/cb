@@ -1,0 +1,25 @@
+<h2>Search</h2>
+
+<p>
+<%= form_tag("search", :remote => true, :id => "search", :method => :get) do %>
+  <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
+  <%= search_field_tag "keyword" %>
+  <%= submit_tag "search" %>
+<% end %>
+<div id="result_form">
+<% if @result %>
+  <% if @result.count == 0 %>
+    <div>nothing</div>
+  <% else %>
+    <% @result.each do |commodity| %>
+      <div><%= link_to("#{commodity.name}", commodity) %></div>
+      <div>number:<%= commodity.num %></div>
+      <div>descption:<%= commodity.desc %></div>
+    <% end %>
+  <% end %>
+<% else %>
+  <div>nothing</div>
+<% end %>
+</div>
+</p>
+
