@@ -9,67 +9,33 @@
   <body>
     <div id="wrapper">
       <div id="header">
-	<!-- キーワード -->
-	<h1>*** キーワード ***</h1>
-	<!-- ページの概要 -->
-	<p class="description">*** ページの概要 ***</p>
-	<!-- 企業名｜ショップ名｜タイトル -->
-	<p class="logo"><a href="/">CampusBox</a></p>
+	<!--logo-->
+	<p class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></p>
 	<!-- ナビゲーション -->
 	<ul class="header-navi">
 	  <% if !user_signed_in? %>
-	    <li><%= link_to('login with facebook', omniauth_authorize_path(:user, :facebook)) %></li>
-	    <!-- <%= link_to(image_tag('facebook-login-button.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %> -->
+	    <%= link_to(image_tag('TWlogin.png', { :border => '0', :alt => 'login with twitter'}), omniauth_authorize_path(:user, :twitter)) %>
 	  <% end %>
 	  <% if !user_signed_in? %>
-	    <li><%= link_to('Login with twitter', omniauth_authorize_path(:user, :twitter)) %></li><br />
-	  <% end %>
-	  <% if !user_signed_in? %>
-	    <li><%= link_to('if you have not face or twitter', new_user_session_path) %></li>
+	    <%= link_to(image_tag('FBlogin.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %>
 	  <% end %>
 	  <% if user_signed_in? %>
-	    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li><br />
-	    <li><%= link_to('My Profile', current_user.profile) %></li>
+	    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	    <%= link_to('My Profile', current_user.profile) %>
 	  <% end %>
 	</ul>
       </div>
       <!-- // header end -->
 
+      <div id="mainPic"></div>
       <div id="contents">
-	<!-- コンテンツここから -->
+        <p class="notice"><%=notice%></p><p class="alert"><%=alert%></p>
+	<%= yield %>
+      </div><!-- // contents end -->
 
-	<pclass="notice"><%=notice%></p><pclass="alert"><%=alert%></p>
-
-<%= yield %>
-
-
-<!-- コンテンツここまで -->
-</div><!-- // contents end -->
-
-<div id="sidebar">
-  <!-- サイドバーここから -->
-  <% if user_signed_in? %>
-  <p class="side-title">I am Buyer</p>
-  <ul class="localnavi">
-    <li><%= link_to('Search', '/') %></li>
-    <li><%= link_to('My Order', :orders) %></li>
-  </ul>
-  <p class="side-title">I am Seller</p>
-  <ul class="localnavi">
-    <li><%= link_to('Sell', :new_commodity) %></li>
-    <li><%= link_to('My Goods', :commodities) %></li>
-  </ul>
-  <% else %>
-    <p>box image</p>
-  <% end %>
-  <!-- サイドバーここまで -->
-</div><!-- sidebar end -->
-<!-- ↓削除不可 -->
-<p id="cds">Designed by <a href="http://www.css-designsample.com/">CSS.Design Sample</a></p>
-<div id="footer">
-  <!-- コピーライト / 著作権表示 -->
-  <p>Copyright &copy; *** 企業名｜ショップ名｜タイトルなど ***. All Rights Reserved.</p>
-</div>
-</div>
-</body>
+      <div id="footer">
+	<p>Copyright &copy; *** 企業名｜ショップ名｜タイトルなど ***. All Rights Reserved.</p>
+      </div>
+    </div>
+  </body>
 </html>
