@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   before_filter :check_profile
   skip_before_filter :authenticate_user!
   def index
+    @categories = Category.all
     @commodities = Commodity.all
     @schools = School.all
     new_school =  School.new(:id => 0, :name => "All")
@@ -14,6 +15,7 @@ class HomeController < ApplicationController
   end
 
   def search
+    @categories = Category.all
     @schools = School.all
     new_school =  School.new(:id => 0, :name => "All")
     new_school.id = 0
