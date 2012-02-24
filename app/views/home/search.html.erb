@@ -1,11 +1,10 @@
-<h2>Search</h2>
-
-<p>
-<%= form_tag("search", :remote => true, :id => "search", :method => :get) do %>
-  <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
-  <%= search_field_tag "keyword" %>
-  <%= submit_tag "search" %>
-<% end %>
+<div class="search" aligh="center">
+  <%= form_tag("search", :remote => true, :id => "search", :method => :get, :class => "searchform") do %>
+    <%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name) %>
+    <%= search_field_tag "keyword", nil, :class => :searchfield %>
+    <%= submit_tag "Search", :class => :button %>
+  <% end %>
+</div>
 <div id="result_form">
 <% if @result %>
   <% if @result.count == 0 %>
@@ -21,5 +20,5 @@
   <div>nothing</div>
 <% end %>
 </div>
-</p>
+
 

@@ -5,6 +5,7 @@ class CommoditiesController < ApplicationController
   # GET /commodities
   # GET /commodities.json
   def index
+    @categories = Category.all
     @commodities = current_user.commodities
     @selled = @commodities.where(:num => 0)
     @selling = @commodities.where("num > ?", 0)
@@ -17,6 +18,7 @@ class CommoditiesController < ApplicationController
   # GET /commodities/1
   # GET /commodities/1.json
   def show
+    @categories = Category.all
     @commodity = Commodity.find(params[:id])
     @comment = Comment.new
     @comment.commodity = @commodity
