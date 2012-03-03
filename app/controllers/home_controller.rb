@@ -15,11 +15,6 @@ class HomeController < ApplicationController
   end
 
   def search
-    @categories = Category.all
-    @schools = School.all
-    new_school =  School.new(:id => 0, :name => "All")
-    new_school.id = 0
-    @schools << new_school
     keyword = params[:keyword]
     if keyword == '' or keyword == nil
       return @result

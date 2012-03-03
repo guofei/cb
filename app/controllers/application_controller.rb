@@ -20,5 +20,8 @@ class ApplicationController < ActionController::Base
 
   def all_schools
     @_schools = School.all
+    new_school =  School.new(:id => 0, :name => "All")
+    new_school.id = 0
+    @_schools << new_school
   end
 end

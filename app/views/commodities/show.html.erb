@@ -7,6 +7,11 @@
 <p>i am <%= i %></p>
 
 <p>
+  <b>School</b><br />
+  <%= @commodity.user.school.name %>
+</p>
+
+<p>
   <b>Name:</b>
   <%= @commodity.name %>
   <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="true"></div>
@@ -19,7 +24,12 @@
 </p>
 
 <p>
-  <b>Desc:</b>
+  <b>Place:</b>
+  <%= @commodity.place %>
+</p>
+
+<p>
+  <b>Descption:</b>
   <%= @commodity.desc %>
 </p>
 
