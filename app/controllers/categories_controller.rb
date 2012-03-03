@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
+  skip_before_filter :authenticate_user!, :only => ['index','show']
+
   def index
     @categories = Category.all
 
@@ -14,7 +16,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @categories = Category.all
+    @commodities = @category.commodities
 
     respond_to do |format|
       format.html # show.html.erb
