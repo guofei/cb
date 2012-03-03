@@ -60,7 +60,7 @@
 
       <div id="content" >
 	<div class="search" aligh="center">
-	    <%= form_tag("search", :method => :get, :class => "searchform", :id => "search") do %>
+	    <%= form_tag("/search", :method => :get, :class => "searchform", :id => "search") do %>
 	      <%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name) %>
 	      <%= search_field_tag "keyword", nil, :class => :searchfield %>
 	      <%= submit_tag "Search", :class => :button %>

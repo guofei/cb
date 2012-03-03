@@ -34,6 +34,11 @@
   <%= @commodity.price %>
 </p>
 
+<p>
+  <b>I have same</b>
+  <%= link_to 'sell the same good', new_commodity_path+"?id=#{@commodity.id}"  %>
+</p>
+
 <% if i == 'seller' %>
   <%= render 'seller' %>
 <% end %>

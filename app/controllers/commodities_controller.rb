@@ -34,6 +34,14 @@ class CommoditiesController < ApplicationController
   # GET /commodities/new.json
   def new
     @commodity = Commodity.new
+    old_commodity = Commodity.find(params[:id]) if params[:id]
+    if old_commodity
+      @commodity.name = old_commodity.name
+      @commodity.desc = old_commodity.desc
+      @commodity.price = old_commodity.price
+      @category = old_commodity.categories.first
+    end
+    @category = Category.first if @category == nil
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,8 +60,14 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.new(params[:commodity])
     @commodity.user = current_user
 
+    category = Category.find(params[:category])
+
     respond_to do |format|
       if @commodity.save
+        if category
+          @commodity.commodity_cates.create(:category => category)
+        end
+
         format.html { redirect_to @commodity, notice: 'Commodity was successfully created.' }
         format.json { render json: @commodity, status: :created, location: @commodity }
       else
