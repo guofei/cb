@@ -2,9 +2,11 @@ class HomeController < ApplicationController
   before_filter :check_profile
   skip_before_filter :authenticate_user!
   def index
+    @populars = Popular.order("created_at desc").limit(5)
     @categories = Category.all
     @commodities = Commodity.all
     @schools = School.all
+    @new = Commodity.order("created_at desc").limit(5)
     new_school =  School.new(:id => 0, :name => "All")
     new_school.id = 0
     @schools << new_school
@@ -16,17 +18,23 @@ class HomeController < ApplicationController
 
   def search
     keyword = params[:keyword]
+
     if keyword == '' or keyword == nil
       return @result
     end
 
-    if params[:school] != '0'
-      school = School.find(params[:school])
-      user_ids = school.users.map!{|i| i.id}
-      @result = Commodity.where('name like ? AND num > ?', "%#{keyword}%", 0).where(:user_id => user_ids)
-    else
-      @result = Commodity.where('name like ? AND num > ?', "%#{keyword}%", 0)
-    end
+    keywords = keyword.split(' ')
+    @result = Array.new
 
+    keywords.each { |keyword|
+      if params[:school] != '0'
+        school = School.find(params[:school])
+        user_ids = school.users.map!{|i| i.id}
+        @result += Commodity.where('name like ? AND num > ?', "%#{keyword}%", 0).where(:user_id => user_ids)
+      else
+        @result += Commodity.where('name like ? AND num > ?', "%#{keyword}%", 0)
+      end
+    }
+    @result = @result.uniq
   end
 end

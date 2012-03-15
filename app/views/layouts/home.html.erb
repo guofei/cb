@@ -19,36 +19,34 @@
 
     <div id="wrapper">
       <div id="header">
-	<p class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></p>
-	<ul class="header-navi">
+	<div class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></div>
 	  <% if user_signed_in? %>
+	    <ul class="header-navi">
 	    <%= "#{current_user.profile.name}様 " %>
 	    <%= link_to('My Profile', current_user.profile) %>
 	    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	    </ul>
 	  <% end %>
 	  <% if !user_signed_in? %>
+	    <ul class="unLogin">
 	    <%= link_to(image_tag('TWlogin.png', { :border => '0', :alt => 'login with twitter'}), omniauth_authorize_path(:user, :twitter)) %>
-	    <%= link_to(image_tag('FBlogin.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %>
+	    <%= link_to(image_tag('FBlogin.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %><br />
 	    <%= link_to('if you have not face or twitter', new_user_session_path) %>
+	    </ul>
 	  <% end %>
-	</ul>
-	<ul id="globalnavi">
-	  <li id="category01" class="menu" onmouseover="this.className='menuOn'" onmouseout="this.className='menu'">
-	    <a href="#">I am Buyer</a>
-	    <ul>
-	      <li><%= link_to 'Search', :search %></li>
-	      <li><%= link_to('My order', :orders) %></li>
-	    </ul>
-	  </li>
-	  <li id="category01" class="menu" onmouseover="this.className='menuOn'" onmouseout="this.className='menu'">
-	    <a href="#">I am Seller</a>
-	    <ul>
-	      <li><%= link_to('Sell', :new_commodity) %></li>
-	      <li><%= link_to('My Goods', :commodities) %></li>
-	    </ul>
-	  </li>
+      </div>
+
+      <div id="menu">
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><%= link_to 'Search', :search %></li>
+	  <li><%= link_to('My order', :orders) %></li>
+	  <li><%= link_to('Sell', :new_commodity) %></li>
+	  <li><%= link_to('My Goods', :commodities) %></li>
+	  <li><%= link_to('Mypage', :mypage_index) %></li>
 	</ul>
       </div>
+
       <div id="leftSideBar" align="center" >
 	<div class="sideBarContent">
 	  <p class="side-title">Category</p>

@@ -1,11 +1,14 @@
 CampusBox::Application.routes.draw do
+  resources :populars
+
   resources :mypage, :only => :index
 
   resources :profiles
 
   resources :schools
 
-  get "home/index"
+  resource :home
+
   match "search" => "home#search", :as => :search, :via => :get
 
   resources :categories

@@ -6,7 +6,30 @@
   <% end %>
 </div>
 
-<p>
-<div id="result_form"></div>
-</p>
+<div class="popular">
+  <h2>popular</h2>
+  <table>
+    <% @populars.each do |popular| %>
+      <tr>
+	<td><%= link_to popular.commodity.name, popular.commodity %></td>
+	<td>number:<%= popular.commodity.num %></td>
+	<td>descript:<%= popular.commodity.desc %></td>
+	<td>price:<%= popular.commodity.price %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
+<div class="new">
+  <h2>new</h2>
+  <table>
+    <% @new.each do |commodity| %>
+      <tr>
+	<td><%= link_to commodity.name, commodity %></td>
+	<td>number:<%= commodity.num %></td>
+	<td>descript:<%= commodity.desc %></td>
+	<td>price:<%= commodity.price %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

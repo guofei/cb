@@ -52,6 +52,7 @@ class CommoditiesController < ApplicationController
   # GET /commodities/1/edit
   def edit
     @commodity = Commodity.find(params[:id])
+    @category = Category.first
   end
 
   # POST /commodities
