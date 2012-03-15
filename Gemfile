@@ -7,6 +7,8 @@ gem 'rails', '3.2.1'
 
 gem 'mysql2'
 
+gem "twitter-bootstrap-rails"
+
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
