@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303145712) do
+ActiveRecord::Schema.define(:version => 20120315141910) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(:version => 20120303145712) do
     t.boolean  "state"
     t.integer  "commodity_id"
   end
+
+  create_table "populars", :force => true do |t|
+    t.integer  "commodity_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "populars", ["commodity_id"], :name => "index_populars_on_commodity_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "name"

@@ -19,7 +19,7 @@
 
     <div id="wrapper">
       <div id="header">
-	<p class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></p>
+	<div class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></div>
 	<ul class="header-navi">
 	  <% if user_signed_in? %>
 	    <%= link_to('My Profile', current_user.profile) %>
@@ -31,23 +31,20 @@
 	    <%= link_to('if you have not face or twitter', new_user_session_path) %>
 	  <% end %>
 	</ul>
-	<ul id="globalnavi">
-	  <li id="category01" class="menu" onmouseover="this.className='menuOn'" onmouseout="this.className='menu'">
-	    <a href="#">I am Buyer</a>
-	    <ul>
-	      <li><%= link_to 'Search', :search %></li>
-	      <li><%= link_to('My order', :orders) %></li>
-	    </ul>
-	  </li>
-	  <li id="category01" class="menu" onmouseover="this.className='menuOn'" onmouseout="this.className='menu'">
-	    <a href="#">I am Seller</a>
-	    <ul>
-	      <li><%= link_to('Sell', :new_commodity) %></li>
-	      <li><%= link_to('My Goods', :commodities) %></li>
-	    </ul>
-	  </li>
+      </div>
+
+      <div id="menu">
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><%= link_to 'Search', :search %></li>
+	  <li><%= link_to('My order', :orders) %></li>
+	  <li><%= link_to('Sell', :new_commodity) %></li>
+	  <li><%= link_to('My Goods', :commodities) %></li>
+	  <li><%= link_to('Mypage', :mypage_index) %></li>
+	  <li><%= link_to('Mypage', :mypage_index) %></li>
 	</ul>
       </div>
+
       <div id="leftSideBar" align="center" >
 	<div class="sideBarContent">
 	  <p class="side-title">Category</p>

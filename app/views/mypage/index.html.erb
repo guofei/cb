@@ -1,43 +1,40 @@
-<h2>New Commodities</h2>
-<table>
-  <tr>
-    <th>Name,</th>
-    <th>Num,</th>
-    <th>Price,</th>
-    <th>number of buyers,</th>
-    <th>number of comments</th>
-  </tr>
+<div  class="myPage">
+  <div class="title">
+    <h4>New Commodities</h4>
+  </div>
+  <table>
+    <% i = 0 %>
+    <% @new_commodities.each do |commodity| %>
+      <% if i==0 || i==4  %><tr><% end %>
+      <td>
+	<%= if commodity.photo? then link_to image_tag(commodity.photo.thumb.url), commodity else link_to image_tag("130.jpg"), commodity end %>
+	  <div class="des"><%= link_to commodity.name, commodity %></div>
+      </td>
+      <% if i==3 || i==7 %></tr><% end %>
+      <% i+=1 %>
+    <% end %>
+  </table>
+  <div class="more">
+    <%= link_to('more', :commodities) %>
+  </div>
+</div>
 
-<% @new_commodities.each do |commodity| %>
-  <tr>
-    <td><%= link_to commodity.name, commodity %></td>
-    <td><%= commodity.num %></td>
-    <td><%= commodity.price %></td>
-    <td><%= commodity.orders.length %></t>
-    <td><%= commodity.comments.length %></t>
-  </tr>
-<% end %>
-</table>
+<div  class="myPage">
+  <div class="title">
+    <h4>New Orders</h4>
+  </div>
 
-
-<h2>New Orders</h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>ID</th>
-    <th>Price</th>
-    <th>want</th>
-    <th>state</th>
-  </tr>
-
-<% @new_orders.each do |order| %>
-  <tr>
-    <td><%= link_to order.commodity.name, order.commodity %></td>
-    <td><%= order.name %></td>
-    <td><%= order.price %></td>
-    <td><%= order.commodity.orders.length %></td>
-    <td><%= if order.state then 'ok' else 'wait' end %></td>
-    <td><%= link_to 'cancel', order, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <table>
+    <tr>
+      <% @new_orders.each do |order| %>
+	<td>
+	  <%= if order.commodity.photo? then link_to image_tag(order.commodity.photo.thumb.url), order.commodity else link_to image_tag("130.jpg"), order.commodity end %>
+	    <div class="des"><%= link_to order.commodity.name, order.commodity %></div>
+	</td>
+      <% end %>
+    </tr>
+  </table>
+  <div class="more">
+    <%= link_to('more', :orders) %>
+  </div>
+</div>
