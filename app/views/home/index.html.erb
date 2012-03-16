@@ -1,35 +1,47 @@
-<div class="search" aligh="center">
-  <%= form_tag("search", :method => :get, :class => "searchform", :id => "search") do %>
-    <%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name) %>
-    <%= search_field_tag "keyword", nil, :class => :searchfield %>
-    <%= submit_tag "Search", :class => :button %>
-  <% end %>
+<div class="row-fluid">
+  <div class="well">
+    <h4>人気商品</h4>
+    <table class="table table-striped">
+      <thead>
+	<tr>
+          <th>Name</th>
+          <th>Descript</th>
+          <th>Price</th>
+          <th>Image</th>
+	</tr>
+      </thead>
+      <% @populars.each do |popular| %>
+	<tr>
+	  <td><%= link_to popular.commodity.name, popular.commodity %></td>
+	  <td><%= popular.commodity.desc %></td>
+	  <td><%= popular.commodity.price %></td>
+	  <td><%= image_tag(popular.commodity.photo.thumb.url) if popular.commodity.photo? %></td>
+	</tr>
+      <% end %>
+    </table>
+  </div>
 </div>
 
-<div class="popular">
-  <h2>popular</h2>
-  <table>
-    <% @populars.each do |popular| %>
-      <tr>
-	<td><%= link_to popular.commodity.name, popular.commodity %></td>
-	<td>number:<%= popular.commodity.num %></td>
-	<td>descript:<%= popular.commodity.desc %></td>
-	<td>price:<%= popular.commodity.price %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-
-<div class="new">
-  <h2>new</h2>
-  <table>
-    <% @new.each do |commodity| %>
-      <tr>
-	<td><%= link_to commodity.name, commodity %></td>
-	<td>number:<%= commodity.num %></td>
-	<td>descript:<%= commodity.desc %></td>
-	<td>price:<%= commodity.price %></td>
-      </tr>
-    <% end %>
-  </table>
+<div class="row-fluid">
+  <div class="well">
+    <h4>新しい商品</h4>
+    <table class="table table-striped">
+      <thead>
+	<tr>
+          <th>Name</th>
+          <th>Descript</th>
+          <th>Price</th>
+          <th>Image</th>
+	</tr>
+      </thead>
+      <% @new.each do |commodity| %>
+	<tr>
+	  <td><%= link_to commodity.name, commodity %></td>
+	  <td><%= commodity.desc %></td>
+	  <td><%= commodity.price %></td>
+	  <td><%= image_tag(commodity.photo.thumb.url) if commodity.photo? %></td>
+	</tr>
+      <% end %>
+    </table>
+  </div>
 </div>
