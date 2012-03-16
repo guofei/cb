@@ -1,40 +1,50 @@
-<div  class="myPage">
-  <div class="title">
+<div class="row-fluid">
+  <div class="well">
     <h4>New Commodities</h4>
-  </div>
-  <table>
-    <% i = 0 %>
-    <% @new_commodities.each do |commodity| %>
-      <% if i==0 || i==4  %><tr><% end %>
-      <td>
-	<%= if commodity.photo? then link_to image_tag(commodity.photo.thumb.url), commodity else link_to image_tag("130.jpg"), commodity end %>
-	  <div class="des"><%= link_to commodity.name, commodity %></div>
-      </td>
-      <% if i==3 || i==7 %></tr><% end %>
-      <% i+=1 %>
-    <% end %>
-  </table>
-  <div class="more">
-    <%= link_to('more', :commodities) %>
+    <table class="table table-striped">
+      <thead>
+	<tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th></th>
+	</tr>
+      </thead>
+      <% @new_commodities.each do |commodity| %>
+	<tr>
+	  <td><%= link_to commodity.name, commodity %></td>
+	  <td><%= commodity.price %></td>
+	  <td><a href="commodities/<%= commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= commodity.photo.thumb.url %>' width='100%'><%= commodity.desc %>">画像</a></td>
+	</tr>
+      <% end %>
+    </table>
+    <div class="pull-right">
+      <%= link_to('more', :commodities, :class => 'btn') %>
+    </div>
   </div>
 </div>
 
-<div  class="myPage">
-  <div class="title">
+<div class="row-fluid">
+  <div class="well">
     <h4>New Orders</h4>
-  </div>
 
-  <table>
-    <tr>
+    <table class="table table-striped">
+      <thead>
+	<tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th></th>
+	</tr>
+      </thead>
       <% @new_orders.each do |order| %>
-	<td>
-	  <%= if order.commodity.photo? then link_to image_tag(order.commodity.photo.thumb.url), order.commodity else link_to image_tag("130.jpg"), order.commodity end %>
-	    <div class="des"><%= link_to order.commodity.name, order.commodity %></div>
-	</td>
+	<tr>
+	  <td><%= link_to order.commodity.name, order.commodity %></td>
+	  <td><%= order.commodity.price %></td>
+	  <td><a href="commodities/<%= order.commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= order.commodity.photo.thumb.url %>' width='100%' /><%= order.commodity.desc %>">画像</a></td>
+	</tr>
       <% end %>
-    </tr>
-  </table>
-  <div class="more">
-    <%= link_to('more', :orders) %>
+    </table>
+    <div class="pull-right">
+      <%= link_to('more', :orders, :class => 'btn') %>
+    </div>
   </div>
 </div>
