@@ -1,47 +1,91 @@
 <div class="row-fluid">
-  <div class="well">
-    <h4>人気商品</h4>
-    <table class="table table-striped">
-      <thead>
-	<tr>
-          <th>Name</th>
-          <th>Descript</th>
-          <th>Price</th>
-          <th>Image</th>
-	</tr>
-      </thead>
-      <% @populars.each do |popular| %>
-	<tr>
-	  <td><%= link_to popular.commodity.name, popular.commodity %></td>
-	  <td><%= popular.commodity.desc %></td>
-	  <td><%= popular.commodity.price %></td>
-	  <td><%= image_tag(popular.commodity.photo.thumb.url) if popular.commodity.photo? %></td>
-	</tr>
-      <% end %>
-    </table>
+  <div class="alert alert-info">
+    人気商品
   </div>
-</div>
+  <div class="accordion" id="popular">
+    <% i = 0 %>
+    <% @populars.each do |popular| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#popular" href="#collapse<%= i %>">
+	    商品名：<%= popular.commodity.name %>
+          </a>
+        </div>
+	<% if i == 0 %>
+          <div id="collapse<%= i %>" class="accordion-body collapse in">
+	<% end %>
+	<% if i > 0 %>
+	  <div id="collapse<%= i %>" class="accordion-body collapse">
+	<% end %>
+        <div class="accordion-inner">
+	  <table class="table">
+            <thead>
+              <tr>
+		<th nowrap="nowrap">価格</th>
+		<th nowrap="nowrap">Descption</th>
+		<th nowrap="nowrap">Image</th>
+		<th></th>
+              </tr>
+            </thead>
+	    <tbody>
+	    <tr>
+	      <td><%= popular.commodity.price %></td>
+	      <td><%= popular.commodity.desc %></td>
+	      <td><%= image_tag(popular.commodity.photo.thumb.url) if popular.commodity.photo? %></td>
+	      <td nowrap="nowrap"><%= button_to '詳しい', popular.commodity, :class => 'btn btn-info', :method => 'get' %></td>
+	    </tr>
+	    </tbody>
+	  </table>
+        </div>
+        </div>
+	</div>
+	<% i+=1 %>
+    <% end %>
+    </div>
+  </div>
 
-<div class="row-fluid">
-  <div class="well">
-    <h4>新しい商品</h4>
-    <table class="table table-striped">
-      <thead>
-	<tr>
-          <th>Name</th>
-          <th>Descript</th>
-          <th>Price</th>
-          <th>Image</th>
-	</tr>
-      </thead>
-      <% @new.each do |commodity| %>
-	<tr>
-	  <td><%= link_to commodity.name, commodity %></td>
-	  <td><%= commodity.desc %></td>
-	  <td><%= commodity.price %></td>
-	  <td><%= image_tag(commodity.photo.thumb.url) if commodity.photo? %></td>
-	</tr>
-      <% end %>
-    </table>
+  <div class="row-fluid">
+      <div class="alert alert-info">
+	新しい商品
+      </div>
+  <div class="accordion" id="new">
+    <% i = 0 %>
+    <% @new.each do |commodity| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#new" href="#collapsenew<%= i %>">
+	    商品名：<%= commodity.name %>
+          </a>
+        </div>
+	<% if i == 0 %>
+          <div id="collapsenew<%= i %>" class="accordion-body collapse in">
+	<% end %>
+	<% if i > 0 %>
+	  <div id="collapsenew<%= i %>" class="accordion-body collapse">
+	<% end %>
+        <div class="accordion-inner">
+	  <table class="table">
+            <thead>
+              <tr>
+		<th nowrap="nowrap">価格</th>
+		<th nowrap="nowrap">Descption</th>
+		<th nowrap="nowrap">Image</th>
+		<th></th>
+              </tr>
+            </thead>
+	    <tbody>
+	    <tr>
+	      <td><%= commodity.price %></td>
+	      <td><%= commodity.desc %></td>
+	      <td><%= image_tag(commodity.photo.thumb.url) if commodity.photo? %></td>
+	      <td nowrap="nowrap"><%= button_to '詳しい', commodity, :class => 'btn btn-info', :method => 'get' %></td>
+	    </tr>
+	    </tbody>
+	  </table>
+        </div>
+        </div>
+	</div>
+	<% i+=1 %>
+    <% end %>
+    </div>
   </div>
-</div>

@@ -1,30 +1,29 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-<p id="notice"><%= notice %></p>
-
 <% i = whoami? current_user, @commodity %>
 
-<p>i am <%= i %></p>
+<div class="well">
+<p id="notice"><%= notice %></p>
 
 <p>
-  <b>School</b><br />
-  <%= @commodity.user.school.name %>
-</p>
-
-<p>
-  <b>Name:</b>
+  <b>商品名:</b>
   <%= @commodity.name %>
   <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="true"></div>
   <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
 </p>
 
 <p>
-  <b>Num:</b>
+  <b>学校：</b>
+  <%= @commodity.user.school.name %>
+</p>
+
+<p>
+  <b>数:</b>
   <%= @commodity.num %>
 </p>
 
 <p>
-  <b>Place:</b>
+  <b>取引場所:</b>
   <%= @commodity.place %>
 </p>
 
@@ -34,23 +33,24 @@
 </p>
 
 <p>
-  <b>Pic:</b><br />
+  <b>画像:</b><br />
   <%= image_tag(@commodity.photo.url) if @commodity.photo? %>
 </p>
 
 <p>
-  <b>Price:</b>
+  <b>価格:</b>
   <%= @commodity.price %>
 </p>
 
 <p>
-  <b>I have same</b>
-  <%= link_to 'sell the same good', new_commodity_path+"?id=#{@commodity.id}"  %>
+  <b>I have the same</b>
+  <%= link_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}"  %>
 </p>
 
 <% if i == 'seller' %>
   <%= render 'seller' %>
 <% end %>
+
 
 <h2>comments</h2>
 <% @commodity.comments.each do |comment| %>
@@ -73,6 +73,6 @@
 <% if i != 'seller' and i != 'buyer' %>
   <%= render 'orders/form', :order => @order%>
 <% end %>
-
+</div>
 <%= link_to 'Edit', edit_commodity_path(@commodity) %> |
 <%= link_to 'Back', commodities_path %>
