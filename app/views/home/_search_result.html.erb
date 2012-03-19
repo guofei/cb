@@ -1,11 +1,20 @@
 <% if @result %>
   <% if @result.count == 0 %>
-    <div>nothing</div>
+    <div>Nothing</div>
   <% else %>
     <% @result.each do |commodity| %>
-      <div><%= link_to("#{commodity.name}", commodity) %></div>
-      <div>number:<%= commodity.num %></div>
-      <div>descption:<%= commodity.desc %></div>
+      <div class="row-fluid">
+	<div class="well">
+	  <div>
+	    <%= link_to("#{commodity.name}", commodity) %><br />
+	    Number:<%= commodity.num %><br />
+	    Descption:<%= commodity.desc %>
+	  </div>
+	  <div>
+	    <%= image_tag(commodity.photo.thumb.url) if commodity.photo? %>
+	  </div>
+	</div>
+      </div>
     <% end %>
   <% end %>
 <% else %>
