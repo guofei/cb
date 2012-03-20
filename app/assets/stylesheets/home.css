@@ -1,9 +1,6 @@
 div .goods-left {
 	float: left;
-<<<<<<< HEAD
 	width: 75%;
-=======
-	width: 70%;
 	word-wrap: break-word;
 	overflow: hidden;
 	padding-right: 10px;
@@ -11,10 +8,9 @@ div .goods-left {
 
 div .goods-right {
 	float: left;
-	width: 25%; 
+	width: 20%;
 }
 
 div .clear {
 	clear: both;
->>>>>>> cp
 }
