@@ -1,6 +1,10 @@
 div .goods-left {
 	float: left;
+<<<<<<< HEAD
 	width: 70%;
+=======
+	width: 75%;
+>>>>>>> master
 	word-wrap: break-word;
 	overflow: hidden;
 	padding-right: 10px;
@@ -8,7 +12,11 @@ div .goods-left {
 
 div .goods-right {
 	float: left;
+<<<<<<< HEAD
 	width: 25%; 
+=======
+	width: 20%;
+>>>>>>> master
 }
 
 div .clear {
