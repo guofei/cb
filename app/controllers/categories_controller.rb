@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
-    @commodities = @category.commodities
+    @commodities = @category.commodities.order("created_at desc")
 
     respond_to do |format|
       format.html # show.html.erb

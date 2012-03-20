@@ -5,12 +5,12 @@
     <% @result.each do |commodity| %>
       <div class="row-fluid">
 	<div class="well">
-	  <div>
-	    <%= link_to("#{commodity.name}", commodity) %><br />
-	    Number:<%= commodity.num %><br />
-	    Descption:<%= commodity.desc %>
+	  <div class="span4">
+	    <p><%= link_to("#{commodity.name}", commodity) %></p>
+	    <p>Number:<%= commodity.num %></p>
+	    <p>Descption:<%= commodity.desc %></p>
 	  </div>
-	  <div>
+	  <div class="span2">
 	    <%= image_tag(commodity.photo.thumb.url) if commodity.photo? %>
 	  </div>
 	</div>
@@ -20,3 +20,4 @@
 <% else %>
   <div>nothing</div>
 <% end %>
+
