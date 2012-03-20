@@ -1,4 +1,6 @@
 CampusBox::Application.routes.draw do
+  devise_for :admins
+
   resources :populars
 
   resources :mypage, :only => :index
