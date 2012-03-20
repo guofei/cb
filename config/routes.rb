@@ -1,6 +1,9 @@
 CampusBox::Application.routes.draw do
+<<<<<<< HEAD
   devise_for :admins
 
+=======
+>>>>>>> cp
   resources :populars
 
   resources :mypage, :only => :index
