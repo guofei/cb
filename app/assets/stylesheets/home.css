@@ -1,4 +1,7 @@
 div .goods-left {
 	float: left;
 	width: 75%;
+	word-wrap: break-word;
+	overflow: hidden;
+	padding-right: 10px;
 }
