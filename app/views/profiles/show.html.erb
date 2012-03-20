@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div class="hero-unit">
 <p>
   <b>Name:</b>
   <%= @profile.name %>
@@ -19,6 +20,7 @@
   <b>Mail:</b>
   <%= @profile.mail %>
 </p>
+</div>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %>
+<%= button_to 'Edit', edit_profile_path(@profile), :class => 'btn', :method => 'get' %>
 

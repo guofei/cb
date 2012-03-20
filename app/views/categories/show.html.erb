@@ -1,19 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Category:</b>
-  <%= @category.name %>
-</p>
+<div class="row-fluid">
+  <div class="well">
+    <h4><%= @category.name %></h4>
 
-<p>name, description, price</p>
-
-<% @commodities.each do |commodity| %>
-  <p>
-    <%= link_to commodity.name, commodity %>
-    <%= commodity.desc %>
-    <%= commodity.price %>
-  </p>
-<% end %>
-
+    <table class="table table-striped">
+      <thead>
+	<tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th></th>
+	</tr>
+      </thead>
+      <% @commodities.each do |commodity| %>
+	<tr>
+	  <td><%= link_to commodity.name, commodity %></td>
+	  <td><%= commodity.price %></td>
+	  <td><a href="commodities/<%= commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= commodity.photo.thumb.url %>' width='100%'><%= commodity.desc %>">画像</a></td>
+	</tr>
+      <% end %>
+    </table>
+    <div class="pull-right">
+      <%= link_to('more', :commodities, :class => 'btn') %>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Back', categories_path %>
