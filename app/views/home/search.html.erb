@@ -1,27 +1,5 @@
 <div id="result_form">
-  <% if @result %>
-    <% if @result.count == 0 %>
-      <div>nothing</div>
-    <% else %>
-      <% @result.each do |commodity| %>
-	<div class="row-fluid">
-	  <div class="well">
-	    <div class="goods-left">
-	      <%= link_to("#{commodity.name}", commodity) %><br />
-	      Number:<%= commodity.num %><br />
-	      Descption:<%= commodity.desc %>
-	    </div>
-	    <div class="goods-right">
-	      <%= image_tag(commodity.photo.thumb.url) if commodity.photo? %>
-	    </div>
-	    <div class="clear"></div>
-	  </div>
-	</div>
-      <% end %>
-    <% end %>
-  <% else %>
-    <div>nothing</div>
-  <% end %>
+  <%= render 'search_result' %>
 </div>
 
 
