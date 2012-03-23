@@ -1,5 +1,9 @@
 CampusBox::Application.routes.draw do
-  devise_for :admins
+  namespace :admins do
+    resources :categories
+  end
+
+  resources :categories
 
   resources :populars
 
@@ -13,8 +17,6 @@ CampusBox::Application.routes.draw do
 
   match "search" => "home#search", :as => :search, :via => :get
 
-  resources :categories
-
   resources :orders do
     post 'deal', :on => :member
   end
@@ -26,6 +28,8 @@ CampusBox::Application.routes.draw do
   resources :commoditycates
 
   resources :ordercommodities
+
+  devise_for :admins
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks"
