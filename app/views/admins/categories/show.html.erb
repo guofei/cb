@@ -16,7 +16,7 @@
 	<tr>
 	  <td><%= link_to commodity.name, commodity %></td>
 	  <td><%= commodity.price %></td>
-	  <td><a href="commodities/<%= commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= commodity.photo.thumb.url %>' width='100%'><%= commodity.desc %>">画像</a></td>
+	  <td><a href="/commodities/<%= commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= commodity.photo.thumb.url %>' width='100%'><%= commodity.desc %>">画像</a></td>
 	</tr>
       <% end %>
     </table>
@@ -26,4 +26,4 @@
   </div>
 </div>
 
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Back', admins_categories_path %>
