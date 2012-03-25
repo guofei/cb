@@ -20,17 +20,6 @@
     <!-- Le fav and touch icons -->
   </head>
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-
     <!-- Navbar
 	 ================================================== -->
     <div class="navbar navbar-fixed-top">
@@ -54,24 +43,8 @@
 	      <li><%= link_to('マイページ', :mypage_index) %></li>
             </ul>
             <ul class="nav pull-right">
-	      <li><%= link_to "#{current_user.profile.name}様 ", '#' if current_user.profile if user_signed_in? %></li>
+	      <li><%= link_to "#{current_admin.email}様 ", '#' %></li>
               <li class="divider-vertical"></li>
-              <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= if user_signed_in? then "Setting" else "Login" end %> <b class="caret"></b></a>
-		<ul class="dropdown-menu">
-		  <% if user_signed_in? %>
-		    <li><%= link_to('My Profile', current_user.profile) %></li>
-		    <li class="divider"></li>
-		    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-		  <% end %>
-		  <% if !user_signed_in? %>
-		    <li><%= link_to('Login with Twitter', omniauth_authorize_path(:user, :twitter)) %></li>
-		    <li><%= link_to('Login with Facebook', omniauth_authorize_path(:user, :facebook)) %></li>
-		    <li class="divider"></li>
-		    <li><%= link_to('If you have not Facebook or Twitter', new_user_session_path) %></li>
-		  <% end %>
-		</ul>
-              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -96,26 +69,6 @@
 
 	<div class="span7">
 	  <!--Body content-->
-	  <% selected_id = 0 %>
-	  <% selected_id = current_user.school.id if current_user.school if user_signed_in? %>
-	  <% if params[:action] == 'search' %>
-	    <div class="form-inline" align="center">
-	      <%= form_tag("search", :remote => true, :id => "search", :method => :get, :class => "form-search well") do %>
-		<%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
-		<%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
-		<%= submit_tag "Search", :class => :btn %>
-	      <% end %>
-	    </div>
-	  <% else %>
-	    <div class="form-inline" align="center">
-	      <%= form_tag("/search", :method => :get, :class => "form-search well", :id => "search") do %>
-		<%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
-		<%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
-		<%= submit_tag "Search", :class => :btn %>
-	      <% end %>
-	    </div>
-	  <% end %>
-
 	  <%= yield %>
 	</div>
 

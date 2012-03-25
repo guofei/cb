@@ -3,6 +3,7 @@ class Admins::CategoriesController < ApplicationController
   # GET /categories.json
   skip_before_filter :authenticate_user!
   before_filter :authenticate_admin!
+  layout 'admins/admins'
 
   def index
     @categories = Category.all
@@ -48,8 +49,8 @@ class Admins::CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render json: @category, status: :created, location: @category }
+        format.html { redirect_to [:admins, @category], notice: 'Category was successfully created.' }
+        format.json { render json: [:admins, @category], status: :created, location: @category }
       else
         format.html { render action: "new" }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -64,7 +65,7 @@ class Admins::CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to [:admins, @category], notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,7 +81,7 @@ class Admins::CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to admins_categories_url }
       format.json { head :no_content }
     end
   end

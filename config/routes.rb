@@ -1,6 +1,7 @@
 CampusBox::Application.routes.draw do
   namespace :admins do
     resources :categories
+    resources :schools
   end
 
   resources :categories
@@ -10,8 +11,6 @@ CampusBox::Application.routes.draw do
   resources :mypage, :only => :index
 
   resources :profiles
-
-  resources :schools
 
   resource :home
 
@@ -29,7 +28,9 @@ CampusBox::Application.routes.draw do
 
   resources :ordercommodities
 
-  devise_for :admins
+  devise_for :admins, :controllers => {
+    :sessions => "admins/sessions"
+  }
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks"

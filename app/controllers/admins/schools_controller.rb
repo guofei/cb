@@ -1,6 +1,10 @@
-class SchoolsController < ApplicationController
+class Admins::SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
+  before_filter :authenticate_admin!
+  skip_before_filter :authenticate_user!
+  layout 'admins/admins'
+
   def index
     @schools = School.all
 
@@ -44,8 +48,8 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       if @school.save
-        format.html { redirect_to @school, notice: 'School was successfully created.' }
-        format.json { render json: @school, status: :created, location: @school }
+        format.html { redirect_to [:admins, @school], notice: 'School was successfully created.' }
+        format.json { render json: [:admins, @school], status: :created, location: @school }
       else
         format.html { render action: "new" }
         format.json { render json: @school.errors, status: :unprocessable_entity }
@@ -60,7 +64,7 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       if @school.update_attributes(params[:school])
-        format.html { redirect_to @school, notice: 'School was successfully updated.' }
+        format.html { redirect_to [:admins, @school], notice: 'School was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +80,7 @@ class SchoolsController < ApplicationController
     @school.destroy
 
     respond_to do |format|
-      format.html { redirect_to schools_url }
+      format.html { redirect_to admins_schools_url }
       format.json { head :no_content }
     end
   end

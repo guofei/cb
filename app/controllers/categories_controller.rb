@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
-  skip_before_filter :authenticate_user!, :only => ['index','show']
+  skip_before_filter :authenticate_user!
 
   def index
     @categories = Category.all
