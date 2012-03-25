@@ -11,7 +11,7 @@ function check_comment(data){
 }
 </script>
 
-<%= form_for([@commodity, @comment], :html => {:onSubmit => "check_comment(this)"}) do |f| %>
+<%= form_for([@commodity, @comment], :html => {:class => "form-horizontal"}) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -23,14 +23,22 @@ function check_comment(data){
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label 'leave a comment' %><br />
-    <%= f.select :state, {'show all' => 1, 'show secret' => 0} %><br />
-    <%= hidden_field_tag :comment_replyto %>
-    <%= f.text_area :content %>
+  <fieldset>
+  <div class="control-group">
+    <%= f.label 'Show', :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :state, {'show all' => 1, 'show secret' => 0} %>
+      <%= hidden_field_tag :comment_replyto %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <%= f.label '内容', :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :content, :class => 'input-xLarge', :rows => 8 %>
+    </div>
   </div>
+  <div class="form-actions">
+    <%= f.submit "Leave a comment", :class => 'btn btn-primary'  %>
+  </div>
+  </fieldset>
 <% end %>

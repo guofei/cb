@@ -2,24 +2,37 @@
 
 <% i = whoami? current_user, @commodity %>
 
-<div class="well">
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>商品名:</b>
+<div class="alert alert-info">
   <%= @commodity.name %>
-  <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="true"></div>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+</div>
+
+<p>
+  <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="true"></div><br />
+
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a><br />
+
+  <%= link_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}"  %>
 </p>
 
+<div class="alert alert-info">
+  商品詳細
+</div>
 <p>
   <b>学校：</b>
   <%= @commodity.user.school.name %>
 </p>
 
 <p>
-  <b>数:</b>
+  <b>数量:</b>
   <%= @commodity.num %>
+</p>
+
+<p>
+  <b>価格:</b>
+  <%= @commodity.price %>
 </p>
 
 <p>
@@ -37,42 +50,17 @@
   <%= image_tag(@commodity.photo.url) if @commodity.photo? %>
 </p>
 
-<p>
-  <b>価格:</b>
-  <%= @commodity.price %>
-</p>
-
-<p>
-  <b>I have the same</b>
-  <%= link_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}"  %>
-</p>
-
 <% if i == 'seller' %>
   <%= render 'seller' %>
 <% end %>
 
-
-<h2>comments</h2>
-<% @commodity.comments.each do |comment| %>
-  <% current_user_id = -1 %>
-  <% current_user_id = current_user.id if user_signed_in? %>
-  <% if comment.state == true or i == 'seller' or comment.replyto == current_user_id or comment.user.id == current_user_id %>
-    <%= comment.user.email %> said:
-    <p>
-      <%= comment.content %>
-    </p>
-    <p>
-      <button onclick="document.getElementById('comment_content').value='Reply <%=comment.user.email %>: '">Reply</button>
-    </p>
-  <% end %>
-<% end %>
-
+<%= render 'commentsofcommodity' %>
 
 <%= render 'comments/form' %>
 
 <% if i != 'seller' and i != 'buyer' %>
   <%= render 'orders/form', :order => @order%>
 <% end %>
-</div>
+
 <%= link_to 'Edit', edit_commodity_path(@commodity) %> |
 <%= link_to 'Back', commodities_path %>

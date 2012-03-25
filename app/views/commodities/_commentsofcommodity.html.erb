@@ -1,0 +1,17 @@
+<% me = whoami? current_user, @commodity %>
+
+<div class="alert alert-info">
+  Comments
+</div>
+
+<% @commodity.comments.each do |comment| %>
+  <% current_user_id = -1 %>
+  <% current_user_id = current_user.id if user_signed_in? %>
+  <% if comment.state == true or me == 'seller' or comment.replyto == current_user_id or comment.user.id == current_user_id %>
+    <div class="well">
+      <%= comment.user.profile.name %> Said:
+      <p><%= comment.content %></p>
+      <button class="btn btn-mini btn-info" onclick="document.getElementById('comment_content').value='Reply <%=comment.user.profile.name %>: ';document.getElementById('comment_replyto').value = <%= comment.user.id %>;">Reply</button>
+    </div>
+  <% end %>
+<% end %>
