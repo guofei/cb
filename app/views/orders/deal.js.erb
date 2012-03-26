@@ -1,8 +1,14 @@
 $(function($){
       $('#dealorder')
           .bind("ajax:complete", function(){
-		    $('#state').html(
-			'ok'
-		    );
-		});
+                    $('#mail').html(
+                        "<%= @order.user.profile.mail %>"
+                    );
+                    $('#tel').html(
+                        "<%= @order.user.profile.tel %>"
+                    );
+                    $('#state').html(
+                        "OK!"
+                    );
+                });
   });

@@ -7,7 +7,8 @@
 	<th>Num</th>
 	<th>Price</th>
 	<th>Buyer</th>
-	<th></th>
+	<th>Time</th>
+        <th></th>
 	<th></th>
       </tr>
 
@@ -17,6 +18,7 @@
 	  <td><%= commodity.num %></td>
 	  <td><%= commodity.price %></td>
 	  <td><%= commodity.orders.count %></td>
+          <td><%= commodity.created_at.strftime("%Y.%m.%d %H:%M") %></td>
 	  <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
 	  <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
 	</tr>
@@ -35,6 +37,7 @@
 	<th>Num</th>
 	<th>Price</th>
 	<th>Buyer</th>
+        <th>Time</th>
 	<th></th>
 	<th></th>
       </tr>
@@ -45,6 +48,7 @@
 	  <td><%= commodity.num %></td>
 	  <td><%= commodity.price %></td>
 	  <td><%= commodity.orders.count %></td>
+          <td><%= commodity.created_at.strftime("%Y.%m.%d %H:%M") %></td>
 	  <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
 	  <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
 	</tr>

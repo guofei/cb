@@ -12,26 +12,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :nickname %><br />
+    <%= f.label "Nickname(全てのユーザに公開)" %>
     <%= f.text_field :nickname %>
   </div>
   <div class="field">
-    <%=label_tag :school %><br />
+    <%=label_tag :school %>
     <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :tel %><br />
+    <%= f.label "Tel(Option)" %>
     <%= f.number_field :tel %>
   </div>
   <div class="field">
-    <%= f.label :mail %><br />
+    <%= f.label "Mail(Option)" %>
     <%= f.text_field :mail %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "設定", :class => "btn" %>
   </div>
 <% end %>
+<div class="">
+  <p>出品者に対して:TelまたはMailは自分の商品の注文者しか見えません</p>
+  <p>注文者に対して:自分が注文した商品の所有者が自分に商品を売るときしか見えません</p>
+  <p>自分のTelとMailはいつでも消去することができます</p>
+  <p>....操....</p>
+</div>

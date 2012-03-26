@@ -7,24 +7,25 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-	<th>Name</th>
-	<th>Email</th>
-	<th>Tel</th>
-	<th>State</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Tel</th>
+        <th>State</th>
       </tr>
     </thead>
     <tbody>
       <% @commodity.orders.each do |order| %>
-	<tr>
-	  <td><%= order.user.profile.name %></td>
-	  <td><%= order.user.profile.mail %></td>
-	  <td><%= order.user.profile.tel %></td>
-	  <% if !order.state %>
-	    <td><div id="state"><%= render 'orders/dealform', :order => order %></div></td>
-	  <% else %>
-	    <td>OK!</td>
-	  <% end %>
-	</tr>
+        <tr>
+          <td><%= order.user.profile.name %></td>
+
+            <td><div id="mail"><%= if order.state then order.user.profile.mail else if order.user.profile.mail then "Hided" else "無し" end end  %></div></td>
+            <td><div id="tel"><%= if order.state then order.user.profile.tel else if order.user.profile.tel then "Hiden" else "無し" end end %></div></td>
+            <% if !order.state %>
+              <td><div id="state"><%= render 'orders/dealform', :order => order %></div></td>
+            <% else %>
+              <td>OK!</td>
+            <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>

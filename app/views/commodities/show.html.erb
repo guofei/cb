@@ -58,9 +58,23 @@
   <%= image_tag(@commodity.photo.url) if @commodity.photo? %>
 </p>
 
+<p><b>連絡先:</b></p>
+<div id="buyer">
+<% if i == 'buyer' or i == 'seller' %>
+  <p>Mail:<%= @commodity.user.profile.mail %></p>
+  <p>Tel:<%= @commodity.user.profile.tel %></p>
+<% else %>
+  <p>注文者のみ見られます</p>
+<% end %>
+</div>
+
 <% if i != 'seller' and i != 'buyer' %>
   <div id="order">
-    <%= render 'orders/form', :order => @order%>
+    <% if user_signed_in? %>
+      <%= render 'orders/form', :order => @order, :re => true %>
+    <% else %>
+      <%= render 'orders/form', :order => @order, :re => false %>
+    <% end %>
   </div>
 <% end %>
 

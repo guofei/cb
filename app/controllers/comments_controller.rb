@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     id = params[:comment_replyto]
 
-    if user = User.find(id)
+    if user = User.where(:id => id)
       @comment.replyto = id
     end
 

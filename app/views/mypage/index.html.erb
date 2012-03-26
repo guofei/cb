@@ -7,6 +7,7 @@
 	<tr>
           <th>Name</th>
           <th>Price</th>
+          <th>Time</th>
           <th></th>
 	</tr>
       </thead>
@@ -14,6 +15,7 @@
 	<tr>
 	  <td><%= link_to order.commodity.name, order.commodity %></td>
 	  <td><%= order.commodity.price %></td>
+          <td><%= order.created_at.strftime("%Y.%m.%d %H:%M") %></td>
 	  <td><a href="commodities/<%= order.commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= order.commodity.photo.thumb.url %>' width='100%' /><%= order.commodity.desc %>">画像</a></td>
 	</tr>
       <% end %>
@@ -33,6 +35,7 @@
           <th>Name</th>
           <th>Price</th>
 	  <th>Buyer</th>
+          <th>Time</th>
           <th></th>
 	</tr>
       </thead>
@@ -41,6 +44,7 @@
 	  <td><%= link_to commodity.name, commodity %></td>
 	  <td><%= commodity.price %></td>
 	  <td><%= commodity.orders.count %></td>
+          <td><%= commodity.created_at.strftime("%Y.%m.%d %H:%M") %></td>
 	  <td><a href="commodities/<%= commodity.id%>" rel="popover" title="画像" data-content="<img src='<%= commodity.photo.thumb.url %>' width='100%'><%= commodity.desc %>">画像</a></td>
 	</tr>
       <% end %>

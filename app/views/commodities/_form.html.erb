@@ -16,7 +16,7 @@
     <div class="controls"><%= f.text_field :name %></div>
   </div>
   <div class="control-group">
-    <%= f.label :number, :class => "control-label" %>
+    <%= f.label :数量, :class => "control-label" %>
     <div class="controls"><%= f.number_field :num %></div>
   </div>
   <div class="control-group">
@@ -24,20 +24,20 @@
     <div class="controls"><%= f.text_field :place %></div>
   </div>
   <div class="control-group">
-    <%= f.label :descption, :class => "control-label" %>
+    <%= f.label :詳細情報, :class => "control-label" %>
     <div class="controls"><%= f.text_area :desc, :class => 'input-xlarge', :rows => 3 %></div>
   </div>
   <div class="control-group">
-    <%=label_tag :Category, :Category, :class => "control-label" %>
+    <%=label_tag :category, :カテゴリー, :class => "control-label" %>
     <div class="controls"><%= select_tag "category", options_from_collection_for_select(all_categories, :id, :name), :selected => @category.id %></div>
   </div>
   <div class="control-group">
-    <%= label_tag :image, :image, :class => "control-label" %>
+    <%= label_tag :image, :画像, :class => "control-label" %>
     <div class="controls"><%= f.file_field :photo %>
     <%= f.hidden_field :photo_cache %></div>
   </div>
   <div class="control-group">
-    <%= f.label :price, :class => "control-label" %>
+    <%= f.label :価格, :class => "control-label" %>
     <div class="controls"><%= f.number_field :price %></div>
   </div>
   <div class="form-actions">
