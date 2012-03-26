@@ -20,9 +20,7 @@
 	</tr>
       <% end %>
     </table>
-    <div class="pull-right">
-      <%= link_to('more', :commodities, :class => 'btn') %>
-    </div>
+    <%= paginate @commodities %>
   </div>
 </div>
 

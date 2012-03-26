@@ -5,6 +5,7 @@
 
 <p id="notice"><%= notice %></p>
 
+<div class="">
 <div class="alert alert-info">
   <%= @commodity.name %>
 </div>
@@ -14,15 +15,22 @@
 
   <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a><br />
 
-  <%= link_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}"  %>
+  <%= button_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}", :class => "btn btn-info btn-mini", :method => 'get'  %>
 </p>
+</div>
 
+<div class="">
 <div class="alert alert-info">
   商品詳細
 </div>
 <p>
   <b>学校：</b>
   <%= @commodity.user.school.name %>
+</p>
+
+<p>
+  <b>出品者：</b>
+  <%= @commodity.user.profile.name %>
 </p>
 
 <p>
@@ -50,6 +58,14 @@
   <%= image_tag(@commodity.photo.url) if @commodity.photo? %>
 </p>
 
+<% if i != 'seller' and i != 'buyer' %>
+  <div id="order">
+    <%= render 'orders/form', :order => @order%>
+  </div>
+<% end %>
+
+</div>
+
 <% if i == 'seller' %>
   <%= render 'seller' %>
 <% end %>
@@ -57,10 +73,6 @@
 <%= render 'commentsofcommodity' %>
 
 <%= render 'comments/form' %>
-
-<% if i != 'seller' and i != 'buyer' %>
-  <%= render 'orders/form', :order => @order%>
-<% end %>
 
 <%= link_to 'Edit', edit_commodity_path(@commodity) %> |
 <%= link_to 'Back', commodities_path %>

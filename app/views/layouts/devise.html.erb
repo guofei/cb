@@ -9,30 +9,30 @@
   <body id="loginbody">
     <div id="wrapper">
       <div id="header">
-	<!--logo-->
-	<p class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></p>
-	<!-- ナビゲーション -->
-	<ul class="header-navi">
-	  <% if !user_signed_in? %>
-	    <%= link_to(image_tag('TWlogin.png', { :border => '0', :alt => 'login with twitter'}), omniauth_authorize_path(:user, :twitter)) %>
-	    <%= link_to(image_tag('FBlogin.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %>
-	  <% end %>
-	  <% if user_signed_in? %>
-	    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-	    <%= link_to('My Profile', current_user.profile) %>
-	  <% end %>
-	</ul>
+        <!--logo-->
+        <p class="logo"><%= link_to image_tag('Logo.png', { :border => '0', :alt => 'CampusBox'}), "/" %></p>
+        <!-- ナビゲーション -->
+        <ul class="header-navi">
+          <% if !user_signed_in? %>
+            <%= link_to(image_tag('TWlogin.png', { :border => '0', :alt => 'login with twitter'}), omniauth_authorize_path(:user, :twitter)) %>
+            <%= link_to(image_tag('FBlogin.png', { :border => '0', :alt => 'login with facebook'}), omniauth_authorize_path(:user, :facebook)) %>
+          <% end %>
+          <% if user_signed_in? %>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <%= link_to('My Profile', current_user.profile) %>
+          <% end %>
+        </ul>
       </div>
       <!-- // header end -->
 
       <div id="mainPic"></div>
       <div id="contents">
         <p class="notice"><%=notice%></p><p class="alert"><%=alert%></p>
-	<%= yield %>
+        <%= yield %>
       </div><!-- // contents end -->
 
       <div id="footer">
-	<p>Copyright &copy; *** 企業名｜ショップ名｜タイトルなど ***. All Rights Reserved.</p>
+        <p>Copyright &copy; *** 企業名｜ショップ名｜タイトルなど ***. All Rights Reserved.</p>
       </div>
     </div>
   </body>

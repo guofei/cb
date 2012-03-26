@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.order("created_at DESC").page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
         @commodity.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }

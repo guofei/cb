@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
 
     <!-- Le styles -->
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -32,7 +32,7 @@
 
 
     <!-- Navbar
-	 ================================================== -->
+         ================================================== -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -45,32 +45,32 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Home", "/" %></li>
-	      <li class="divider-vertical"></li>
-	      <li><%= link_to '検索', :search %></li>
-	      <li><%= link_to('購入履歴', :orders) %></li>
-	      <li class="divider-vertical"></li>
-	      <li><%= link_to('出品する', :new_commodity) %></li>
-	      <li><%= link_to('出品リスト', :commodities) %></li>
-	      <li><%= link_to('マイページ', :mypage_index) %></li>
+              <li class="divider-vertical"></li>
+              <li><%= link_to '検索', :search %></li>
+              <li><%= link_to('購入履歴', :orders) %></li>
+              <li class="divider-vertical"></li>
+              <li><%= link_to('出品する', :new_commodity) %></li>
+              <li><%= link_to('出品リスト', :commodities) %></li>
+              <li><%= link_to('マイページ', :mypage_index) %></li>
             </ul>
             <ul class="nav pull-right">
-	      <li><%= link_to "#{current_user.profile.name}様 ", '#' if current_user.profile if user_signed_in? %></li>
+              <li><%= link_to "#{current_user.profile.name}様 ", '#' if current_user.profile if user_signed_in? %></li>
               <li class="divider-vertical"></li>
               <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= if user_signed_in? then "Setting" else "Login" end %> <b class="caret"></b></a>
-		<ul class="dropdown-menu">
-		  <% if user_signed_in? %>
-		    <li><%= link_to('My Profile', current_user.profile) %></li>
-		    <li class="divider"></li>
-		    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-		  <% end %>
-		  <% if !user_signed_in? %>
-		    <li><%= link_to('Login with Twitter', omniauth_authorize_path(:user, :twitter)) %></li>
-		    <li><%= link_to('Login with Facebook', omniauth_authorize_path(:user, :facebook)) %></li>
-		    <li class="divider"></li>
-		    <li><%= link_to('If you have not Facebook or Twitter', new_user_session_path) %></li>
-		  <% end %>
-		</ul>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= if user_signed_in? then "Setting" else "Login" end %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <% if user_signed_in? %>
+                    <li><%= link_to('My Profile', current_user.profile) %></li>
+                    <li class="divider"></li>
+                    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                  <% end %>
+                  <% if !user_signed_in? %>
+                    <li><%= link_to('Login with Twitter', omniauth_authorize_path(:user, :twitter)) %></li>
+                    <li><%= link_to('Login with Facebook', omniauth_authorize_path(:user, :facebook)) %></li>
+                    <li class="divider"></li>
+                    <li><%= link_to('If you have not Facebook or Twitter', new_user_session_path) %></li>
+                  <% end %>
+                </ul>
               </li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -81,52 +81,52 @@
     <div class="container">
       <div class="row">
 
-	<div class="span2 offset1 well">
-	  <!--Sidebar content-->
-	  <ul class="nav nav-pills nav-stacked">
-	    <li class="nav-header">
-	    <h4>カテゴリー</h4>
-	    </li>
+        <div class="span2 offset1 well">
+          <!--Sidebar content-->
+          <ul class="nav nav-pills nav-stacked">
+            <li class="nav-header">
+              <h4>カテゴリー</h4>
+            </li>
 
-	    <% all_categories.each do |category| %>
-	      <li><%= link_to(category.name, category, :class => 'btn') %></li>
-	    <% end %>
-	  </ul>
-	</div>
+            <% all_categories.each do |category| %>
+              <li><%= link_to(category.name, category, :class => 'btn') %></li>
+            <% end %>
+          </ul>
+        </div>
 
-	<div class="span7">
-	  <!--Body content-->
-	  <% selected_id = 0 %>
-	  <% selected_id = current_user.school.id if current_user.school if user_signed_in? %>
-	  <% if params[:action] == 'search' %>
-	    <div class="form-inline" align="center">
-	      <%= form_tag("search", :remote => true, :id => "search", :method => :get, :class => "form-search well") do %>
-		<%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
-		<%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
-		<%= submit_tag "Search", :class => :btn %>
-	      <% end %>
-	    </div>
-	  <% else %>
-	    <div class="form-inline" align="center">
-	      <%= form_tag("/search", :method => :get, :class => "form-search well", :id => "search") do %>
-		<%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
-		<%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
-		<%= submit_tag "Search", :class => :btn %>
-	      <% end %>
-	    </div>
-	  <% end %>
+        <div class="span7">
+          <!--Body content-->
+          <% selected_id = 0 %>
+          <% selected_id = current_user.school.id if current_user.school if user_signed_in? %>
+          <% if params[:action] == 'search' %>
+            <div class="form-inline" align="center">
+              <%= form_tag("search", :remote => true, :id => "search", :method => :get, :class => "form-search well") do %>
+                <%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
+                <%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
+                <%= submit_tag "Search", :class => :btn %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="form-inline" align="center">
+              <%= form_tag("/search", :method => :get, :class => "form-search well", :id => "search") do %>
+                <%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
+                <%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
+                <%= submit_tag "Search", :class => :btn %>
+              <% end %>
+            </div>
+          <% end %>
 
-	  <%= yield %>
-	</div>
+          <%= yield %>
+        </div>
 
-	<div class="span1">
-	</div>
+        <div class="span1">
+        </div>
 
       </div>
     </div>
 
     <!-- Le javascript
-    ================================================== -->
+         ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 

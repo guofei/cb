@@ -1,15 +1,32 @@
-<div class="alert alert-info">
-  These people want to buy
+<div class="">
+
+  <div class="alert alert-info">
+    These people want to buy
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Tel</th>
+	<th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @commodity.orders.each do |order| %>
+	<tr>
+	  <td><%= order.user.profile.name %></td>
+	  <td><%= order.user.profile.mail %></td>
+	  <td><%= order.user.profile.tel %></td>
+	  <% if !order.state %>
+	    <td><div id="state"><%= render 'orders/dealform', :order => order %></div></td>
+	  <% else %>
+	    <td>OK!</td>
+	  <% end %>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
-<p>
-<% @commodity.orders.each do |order| %>
-  <p>
-    <%= order.user.email %>
-    <% if !order.state %>
-      <div id="state"><%= render 'orders/dealform', :order => order %></div>
-    <% else %>
-      <div id="state">ok!</div>
-    <% end %>
-  </p>
-<% end %>
-</p>

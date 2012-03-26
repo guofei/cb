@@ -25,9 +25,9 @@ function check_comment(data){
   <% end %>
   <fieldset>
   <div class="control-group">
-    <%= f.label 'Show', :class => "control-label" %>
+    <%= f.label 'Show to', :class => "control-label" %>
     <div class="controls">
-      <%= f.select :state, {'show all' => 1, 'show secret' => 0} %>
+      <%= f.select :state, {'Every one' => 1, 'Seller' => 0} %>
       <%= hidden_field_tag :comment_replyto %>
     </div>
   </div>

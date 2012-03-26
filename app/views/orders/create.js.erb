@@ -1,0 +1,8 @@
+$(function($){
+      $('#new_order')
+          .bind("ajax:complete", function(){
+		    $('#order').html(
+			"<%= escape_javascript(render :partial => 'after_buy') %>"
+		    );
+		});
+  });

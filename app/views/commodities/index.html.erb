@@ -1,13 +1,12 @@
 <div class="row-fluid">
   <div class="well">
-    <h3>selling</h3>
+    <h3>販売中</h3>
     <table class="table table-striped">
       <tr>
 	<th>Name</th>
 	<th>Num</th>
-	<th>Desc</th>
 	<th>Price</th>
-	<th></th>
+	<th>Buyer</th>
 	<th></th>
 	<th></th>
       </tr>
@@ -16,26 +15,26 @@
 	<tr>
 	  <td><%= link_to commodity.name, commodity %></td>
 	  <td><%= commodity.num %></td>
-	  <td><%= commodity.desc %></td>
 	  <td><%= commodity.price %></td>
+	  <td><%= commodity.orders.count %></td>
 	  <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
 	  <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
 	</tr>
       <% end %>
     </table>
+    <%= paginate @selling %>
   </div>
 </div>
 
 <div class="row-fluid">
   <div class="well">
-    <h3>selled</h3>
+    <h3>販売終了</h3>
     <table class="table table-striped">
       <tr>
 	<th>Name</th>
 	<th>Num</th>
-	<th>Desc</th>
 	<th>Price</th>
-	<th></th>
+	<th>Buyer</th>
 	<th></th>
 	<th></th>
       </tr>
@@ -44,13 +43,14 @@
 	<tr>
 	  <td><%= link_to commodity.name, commodity %></td>
 	  <td><%= commodity.num %></td>
-	  <td><%= commodity.desc %></td>
 	  <td><%= commodity.price %></td>
+	  <td><%= commodity.orders.count %></td>
 	  <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
 	  <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
 	</tr>
       <% end %>
     </table>
+    <%= paginate @selled %>
     <%= link_to 'New Commodity', new_commodity_path %>
   </div>
 </div>
