@@ -2,11 +2,10 @@ CampusBox::Application.routes.draw do
   namespace :admins do
     resources :categories
     resources :schools
+    resources :populars
   end
 
   resources :categories
-
-  resources :populars
 
   resources :mypage, :only => :index
 
