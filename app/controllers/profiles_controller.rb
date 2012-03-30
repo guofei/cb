@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
     current_user.save
 
     @profile = Profile.find(params[:id])
-    debugger
+
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
