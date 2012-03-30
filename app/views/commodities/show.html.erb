@@ -15,7 +15,7 @@
 
   <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a><br />
 
-  <%= button_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}", :class => "btn btn-info btn-mini", :method => 'get'  %>
+  <%= link_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}", :class => "btn btn-info btn-mini" %>
 </p>
 </div>
 

@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :check_profile
   skip_before_filter :authenticate_user!
   def index
-    @populars = Popular.order("created_at desc").limit(5)
+    @populars = Popular.joins(:commodity).where("commodities.num > ?", 0).order("created_at desc").limit(5)
     @categories = Category.all
     @schools = School.all
     @new = Commodity.order("created_at desc").limit(5)

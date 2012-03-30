@@ -48,7 +48,7 @@ class Admins::PopularsController < ApplicationController
 
     respond_to do |format|
       if @popular.save
-        format.html { redirect_to @popular, notice: 'Popular was successfully created.' }
+        format.html { redirect_to [:admins, @popular], notice: 'Popular was successfully created.' }
         format.json { render json: @popular, status: :created, location: @popular }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class Admins::PopularsController < ApplicationController
 
     respond_to do |format|
       if @popular.update_attributes(params[:popular])
-        format.html { redirect_to @popular, notice: 'Popular was successfully updated.' }
+        format.html { redirect_to [:admins, @popular], notice: 'Popular was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,7 +80,7 @@ class Admins::PopularsController < ApplicationController
     @popular.destroy
 
     respond_to do |format|
-      format.html { redirect_to populars_url }
+      format.html { redirect_to admins_populars_url }
       format.json { head :no_content }
     end
   end

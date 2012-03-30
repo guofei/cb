@@ -3,13 +3,14 @@ CampusBox::Application.routes.draw do
     resources :categories
     resources :schools
     resources :populars
+    resources :profiles
   end
 
   resources :categories
 
   resources :mypage, :only => :index
 
-  resources :profiles
+  resources :profiles, :except => :index
 
   resource :home
 

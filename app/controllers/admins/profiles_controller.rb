@@ -1,4 +1,19 @@
-class ProfilesController < ApplicationController
+class Admins::ProfilesController < ApplicationController
+  skip_before_filter :authenticate_user!
+  before_filter :authenticate_admin!
+  layout 'admins/admins'
+
+  # GET /profiles
+  # GET /profiles.json
+  def index
+    @profiles = Profile.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @profiles }
+    end
+  end
+
   # GET /profiles/1
   # GET /profiles/1.json
   def show
@@ -37,7 +52,7 @@ class ProfilesController < ApplicationController
     @profile.user = current_user
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { redirect_to [:admins, @profile], notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else
         format.html { render action: "new" }
@@ -53,10 +68,10 @@ class ProfilesController < ApplicationController
     current_user.save
 
     @profile = Profile.find(params[:id])
-    debugger
+
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to [:admins, @profile], notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,7 +87,7 @@ class ProfilesController < ApplicationController
     @profile.destroy
 
     respond_to do |format|
-      format.html { redirect_to profiles_url }
+      format.html { redirect_to admins_profiles_url }
       format.json { head :no_content }
     end
   end

@@ -3,18 +3,20 @@
     <div>Nothing</div>
   <% else %>
     <% @result.each do |commodity| %>
-      <div class="row-fluid">
-	<div class="well">
-	  <div class="goods-left">
-	    <p><%= link_to("#{commodity.name}", commodity) %></p>
-	    <p>Number:<%= commodity.num %></p>
-	    <p>Descption:<%= commodity.desc %></p>
-	  </div>
-	  <div class="goods-right">
-	    <%= image_tag(commodity.photo.thumb.url) if commodity.photo? %>
-	  </div>
-	  <div class="clear"></div>
-	</div>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <%= link_to("#{commodity.name}", commodity, :class => "accordion-toggle") %>
+        </div>
+        <div class="accordion-inner">
+          <div class="goods-left">
+            <p>Number:<%= commodity.num %></p>
+            <p>Descption:<%= commodity.desc %></p>
+          </div>
+          <div class="goods-right">
+            <%= image_tag(commodity.photo.thumb.url) if commodity.photo? %>
+          </div>
+          <div class="clear"></div>
+        </div>
       </div>
     <% end %>
     <%= paginate(@result) %>
