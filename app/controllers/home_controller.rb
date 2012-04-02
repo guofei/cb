@@ -1,3 +1,5 @@
+#! ruby -Ku
+# -*- coding: utf-8 -*-
 class HomeController < ApplicationController
   before_filter :check_profile
   skip_before_filter :authenticate_user!
@@ -22,7 +24,7 @@ class HomeController < ApplicationController
       return @result
     end
 
-    keywords = keyword.split(' ')
+    keywords = keyword.gsub(/　/," ").gsub(/,/," ").gsub(/\v/," ").split(nil)
 
     if params[:school] != '0'
       school = School.find(params[:school])

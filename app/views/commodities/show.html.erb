@@ -59,23 +59,22 @@
 </p>
 
 <p><b>連絡先:</b></p>
-<div id="buyer">
-<% if i == 'buyer' or i == 'seller' %>
-  <p>Mail:<%= @commodity.user.profile.mail %></p>
-  <p>Tel:<%= @commodity.user.profile.tel %></p>
-<% else %>
-  <p>注文者のみ見られます</p>
-<% end %>
-</div>
+<div id="order">
 
-<% if i != 'seller' and i != 'buyer' %>
-  <div id="order">
+  <% if i == 'buyer' or i == 'seller' %>
+    <p>Mail:<%= @commodity.user.profile.mail %></p>
+    <p>Tel:<%= @commodity.user.profile.tel %></p>
+  <% else %>
+    <p>注文者のみ見られます</p>
+  <% end %>
+
+  <% if i != 'seller' and i != 'buyer' %>
     <% if user_signed_in? %>
       <%= render 'orders/form', :order => @order, :re => true %>
     <% else %>
       <%= render 'orders/form', :order => @order, :re => false %>
     <% end %>
-  </div>
+</div>
 <% end %>
 
 </div>
