@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OrdersController < ApplicationController
   before_filter :check_profile
   # GET /orders
@@ -49,6 +50,12 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        alert = Alert.new
+        alert.commodity = @commodity
+        alert.user = @commodity.user
+        alert.info = "購入された"
+        alert.save
+
         @commodity.orders << @order
         @commodity.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -68,6 +75,12 @@ class OrdersController < ApplicationController
       @order.commodity.num -=1
       return nil if !@order.commodity.save
       if @order.update_attributes(params[:order])
+        alert = Alert.new
+        alert.commodity = @order.commodity
+        alert.user = @order.user
+        alert.info = "購入成功"
+        alert.save
+
         respond_to do |format|
           format.js
         end

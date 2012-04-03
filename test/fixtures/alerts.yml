@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  commodity: 
+  user: 
+  info: MyString
+
+two:
+  commodity: 
+  user: 
+  info: MyString

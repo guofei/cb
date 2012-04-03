@@ -6,6 +6,8 @@ CampusBox::Application.routes.draw do
     resources :profiles
   end
 
+  resources :alerts, :only => [:index, :destroy]
+
   resources :categories
 
   resources :mypage, :only => :index

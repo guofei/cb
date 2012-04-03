@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
   before_filter :check_profile
   # GET /comments
@@ -43,9 +44,19 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     id = params[:comment_replyto]
+    alert = Alert.new
+    alert.commodity_id = params[:commodity_id]
 
-    if user = User.where(:id => id)
+    if id != ""
+      user = User.find(:id => id)
       @comment.replyto = id
+      alert.user_id = id
+      alert.info = "返信されました"
+      alert.save
+    else
+      alert.user = Commodity.find(params[:commodity_id]).user
+      alert.info = "返信されました"
+      alert.save
     end
 
     @comment.commodity_id = params[:commodity_id]

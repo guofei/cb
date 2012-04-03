@@ -1,0 +1,9 @@
+<% @alerts.each do |alert| %>
+  <div class="alert alert-info">
+    <p>商品名：<%= alert.commodity.name %></p>
+    <p>内容：<%= alert.info %></p>
+    <%= link_to "詳細", alert.commodity, :class => "btn btn-small", :method => "get" %>
+    <%= link_to 'Delete', alert, confirm: 'Are you sure?', :class => "btn btn-small", method: :delete %>
+  </div>
+<% end %>
+
