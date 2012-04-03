@@ -48,9 +48,9 @@ class CommentsController < ApplicationController
     alert.commodity_id = params[:commodity_id]
 
     if id != ""
-      user = User.find(:id => id)
+      user = User.find(id)
       @comment.replyto = id
-      alert.user_id = id
+      alert.user = user
       alert.info = "#{current_user.profile.name}に返信されました"
       alert.user.havemessage = 1
       alert.user.save
