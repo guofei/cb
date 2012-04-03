@@ -46,8 +46,8 @@
             <ul class="nav">
               <li><%= link_to "Home", "/" %></li>
               <li class="divider-vertical"></li>
-              <li><%= link_to('注文一覧', :orders) %></li>
-              <li><%= link_to('購入履歴', :orders) %></li>
+              <li><%= link_to('注文一覧', orders_path(:mode => "new")) %></li>
+              <li><%= link_to('購入履歴', orders_path(:mode => "old")) %></li>
               <li class="divider-vertical"></li>
               <li><%= link_to('出品する', :new_commodity) %></li>
               <li><%= link_to('出品一覧', :commodities) %></li>

@@ -11,7 +11,7 @@
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= link_to order.commodity.name, order.commodity%></td>
+    <td><%= link_to order.commodity.name, order.commodity if order.commodity %></td>
     <td><%= order.name %></td>
     <td><%= order.price %></td>
     <td><%= order.created_at.strftime("%Y.%m.%d %H:%M") %></td>

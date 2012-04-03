@@ -4,7 +4,13 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = current_user.orders.order("created_at DESC").page(params[:page]).per(15)
+    if params[:mode] == "new"
+      @orders = current_user.orders.where("state is NULL or state = 'false'").order("created_at DESC").page(params[:page]).per(15)
+    elsif params[:mode] == "old"
+      @orders = current_user.orders.where(:state => true).order("created_at DESC").page(params[:page]).per(15)
+    else
+      @orders = current_user.orders.order("created_at DESC").page(params[:page]).per(15)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,6 +53,7 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.name = Time.now.to_i
     @order.price = @commodity.price
+    @order.state = 0
 
     respond_to do |format|
       if @order.save
