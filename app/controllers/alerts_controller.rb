@@ -3,6 +3,8 @@ class AlertsController < ApplicationController
   # GET /alerts
   # GET /alerts.json
   def index
+    current_user.havemessage = 0
+    current_user.save
     @alerts = current_user.alerts.order("created_at DESC").page(params[:page]).per(15)
 
     respond_to do |format|

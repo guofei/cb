@@ -51,11 +51,15 @@ class CommentsController < ApplicationController
       user = User.find(:id => id)
       @comment.replyto = id
       alert.user_id = id
-      alert.info = "返信されました"
+      alert.info = "#{current_user.profile.name}に返信されました"
+      alert.user.havemessage = 1
+      alert.user.save
       alert.save
     else
       alert.user = Commodity.find(params[:commodity_id]).user
-      alert.info = "返信されました"
+      alert.info = "#{current_user.profile.name}に返信されました"
+      alert.user.havemessage = 1
+      alert.user.save
       alert.save
     end
 

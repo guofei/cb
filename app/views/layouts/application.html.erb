@@ -97,6 +97,14 @@
         <div class="span7">
           <!--Body content-->
           <div class="newmessage">
+            <% if user_signed_in? %>
+              <% if current_user.havemessage %>
+                <div class="alert">
+                  <a class="close" data-dismiss="alert">×</a>
+                  You have a message <%= link_to 'お知らせ', alerts_path %>をクリックしてください
+                </div>
+              <% end %>
+            <% end %>
           </div>
 
           <% selected_id = 0 %>

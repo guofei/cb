@@ -53,7 +53,9 @@ class OrdersController < ApplicationController
         alert = Alert.new
         alert.commodity = @commodity
         alert.user = @commodity.user
-        alert.info = "購入された"
+        alert.info = "#{current_user.profile.name}が商品を買いたいです"
+        alert.user.havemessage = 1
+        alert.user.save
         alert.save
 
         @commodity.orders << @order
@@ -79,6 +81,8 @@ class OrdersController < ApplicationController
         alert.commodity = @order.commodity
         alert.user = @order.user
         alert.info = "購入成功"
+        alert.user.havemessage = 1
+        alert.user.save
         alert.save
 
         respond_to do |format|
