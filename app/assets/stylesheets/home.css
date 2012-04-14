@@ -14,3 +14,20 @@ div .goods-right {
 div .clear {
 	clear: both;
 }
+
+div .search_result {
+}
+
+.search_result a:link {
+    COLOR: #0000FF;
+}
+.search_result a:visited {
+    COLOR: #800080;
+}
+.search_result a:hover {
+    COLOR: #FF0000;
+}
+.search_result a:active {
+    COLOR: #00FF00;
+}
+

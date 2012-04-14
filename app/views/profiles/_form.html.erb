@@ -20,12 +20,12 @@
     <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label "Tel(Option)" %>
-    <%= f.telephone_field :tel %>
+    <%= f.label "Mail(なるべく学校のメールを使ってください)" %>
+    <%= f.text_field :mail %>
   </div>
   <div class="field">
-    <%= f.label "Mail(Option)" %>
-    <%= f.text_field :mail %>
+    <%= f.label "Tel(Option)" %>
+    <%= f.telephone_field :tel %>
   </div>
   <div class="actions">
     <%= f.submit "設定", :class => "btn" %>

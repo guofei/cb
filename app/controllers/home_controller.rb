@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     @populars = Popular.joins(:commodity).where("commodities.num > ?", 0).order("created_at desc").limit(5)
     @categories = Category.all
     @schools = School.all
-    @new = Commodity.order("created_at desc").limit(5)
+    @new = Commodity.order("created_at desc").limit(10)
     new_school =  School.new(:id => 0, :name => "All")
     new_school.id = 0
     @schools << new_school

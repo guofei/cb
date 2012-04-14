@@ -58,6 +58,7 @@ class CommoditiesController < ApplicationController
   # POST /commodities
   # POST /commodities.json
   def create
+    @category = Category.first
     @commodity = Commodity.new(params[:commodity])
     @commodity.user = current_user
 
@@ -81,6 +82,7 @@ class CommoditiesController < ApplicationController
   # PUT /commodities/1
   # PUT /commodities/1.json
   def update
+    @category = Category.first
     @commodity = Commodity.find(params[:id])
 
     respond_to do |format|

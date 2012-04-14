@@ -1,6 +1,8 @@
 <p>Mail:<%= @commodity.user.profile.mail %></p>
 <p>Tel:<%= @commodity.user.profile.tel %></p>
-<p>OK!</p>
+<div class="alert  alert-success">
+  OK!出品者に連絡してくだい
+</div>
 <p>
-<%= button_to 'My orders', :orders, :class => "btn btn-primary", :method => "get" %>
+<%= link_to 'My orders', orders_path(:mode => "new"), :class => "btn" %>
 </p>

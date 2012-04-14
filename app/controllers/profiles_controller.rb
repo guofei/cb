@@ -31,6 +31,7 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
+    @schools = School.all
     current_user.school = School.find(params[:school])
     current_user.save
     @profile = Profile.new(params[:profile])
@@ -49,6 +50,7 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.json
   def update
+    @schools = School.all
     current_user.school = School.find(params[:school])
     current_user.save
 

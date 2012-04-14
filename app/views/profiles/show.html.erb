@@ -7,8 +7,8 @@
 </p>
 
 <p>
-  <b>Nickname:</b>
-  <%= @profile.nickname %>
+  <b>School Mail:</b>
+  <%= @profile.mail %>
 </p>
 
 <p>
@@ -16,10 +16,6 @@
   <%= @profile.tel %>
 </p>
 
-<p>
-  <b>Mail:</b>
-  <%= @profile.mail %>
-</p>
 </div>
 
 <%= button_to 'Edit', edit_profile_path(@profile), :class => 'btn', :method => 'get' %>

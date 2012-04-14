@@ -24,6 +24,11 @@
   商品詳細
 </div>
 <p>
+  <b>Time：</b>
+  <%= @commodity.created_at.strftime("%Y.%m.%d %H:%M") %>
+</p>
+
+<p>
   <b>学校：</b>
   <%= @commodity.user.school.name %>
 </p>
@@ -64,6 +69,9 @@
   <% if i == 'buyer' or i == 'seller' %>
     <p>Mail:<%= @commodity.user.profile.mail %></p>
     <p>Tel:<%= @commodity.user.profile.tel %></p>
+    <% if i == 'buyyer' %>
+      <div class="alert  alert-success">出品者に連絡してくだい</div>
+    <% end %>
   <% else %>
     <p>注文者のみ見られます</p>
   <% end %>

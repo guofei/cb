@@ -43,34 +43,35 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    @commodity = Commodity.find(params[:commodity_id])
     id = params[:comment_replyto]
     alert = Alert.new
     alert.commodity_id = params[:commodity_id]
-
-    if id != ""
-      user = User.find(id)
-      @comment.replyto = id
-      alert.user = user
-      alert.info = "#{current_user.profile.name}に返信されました"
-      alert.user.havemessage = 1
-      alert.user.save
-      alert.save
-    else
-      alert.user = Commodity.find(params[:commodity_id]).user
-      alert.info = "#{current_user.profile.name}に返信されました"
-      alert.user.havemessage = 1
-      alert.user.save
-      alert.save
-    end
 
     @comment.commodity_id = params[:commodity_id]
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
+        if id != ""
+          user = User.find(id)
+          @comment.replyto = id
+          alert.user = user
+          alert.info = "#{current_user.profile.name}に返信されました"
+          alert.user.havemessage = 1
+          alert.user.save
+          alert.save
+        else
+          alert.user = Commodity.find(params[:commodity_id]).user
+          alert.info = "#{current_user.profile.name}に返信されました"
+          alert.user.havemessage = 1
+          alert.user.save
+          alert.save
+        end
+
         format.html { redirect_to @comment.commodity, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to @comment.commodity, notice: 'Comment is too short' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

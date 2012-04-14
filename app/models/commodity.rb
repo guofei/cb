@@ -1,6 +1,9 @@
 class Commodity < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
-  validates :photo, :file_size => { :maximum => 1.megabytes.to_i }
+  validates :photo, :file_size => { :maximum => 0.5.megabytes.to_i }
+  validates_length_of :name, :in => (2..20)
+  validates_numericality_of :num, :user_id, :only_integer => true
+  validates_numericality_of :price
 
   has_many :commodity_cates
   has_many :categories, :through => :commodity_cates
