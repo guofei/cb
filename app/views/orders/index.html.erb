@@ -1,17 +1,17 @@
 <div class="row-fluid">
 <table class="table table-bordered table-striped">
   <tr>
-    <th>Name</th>
+    <th>名前</th>
     <th>ID</th>
-    <th>Price</th>
-    <th>Time</th>
-    <th>State</th>
+    <th>価格</th>
+    <th>購入時間</th>
+    <th>状態</th>
     <th></th>
   </tr>
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= link_to order.commodity.name, order.commodity if order.commodity %></td>
+    <td><%= if order.commodity then link_to order.commodity.name, order.commodity else '商品は存在しません' end %></td>
     <td><%= order.name %></td>
     <td><%= order.price %></td>
     <td><%= order.created_at.strftime("%Y.%m.%d %H:%M") %></td>

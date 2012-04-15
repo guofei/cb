@@ -2,6 +2,7 @@
 
 <% i = whoami? current_user, @commodity %>
 
+<% title "CampusBox - #{@commodity.name}" %>
 
 <p id="notice"><%= notice %></p>
 
@@ -24,7 +25,7 @@
   商品詳細
 </div>
 <p>
-  <b>Time：</b>
+  <b>出品時間：</b>
   <%= @commodity.created_at.strftime("%Y.%m.%d %H:%M") %>
 </p>
 
@@ -45,7 +46,7 @@
 
 <p>
   <b>価格:</b>
-  <%= @commodity.price %>
+  <%= @commodity.price %>円
 </p>
 
 <p>
@@ -54,7 +55,7 @@
 </p>
 
 <p>
-  <b>Descption:</b>
+  <b>詳細情報:</b>
   <%= @commodity.desc %>
 </p>
 
@@ -69,7 +70,7 @@
   <% if i == 'buyer' or i == 'seller' %>
     <p>Mail:<%= @commodity.user.profile.mail %></p>
     <p>Tel:<%= @commodity.user.profile.tel %></p>
-    <% if i == 'buyyer' %>
+    <% if i == 'buyer' %>
       <div class="alert  alert-success">出品者に連絡してくだい</div>
     <% end %>
   <% else %>

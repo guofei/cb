@@ -3,11 +3,11 @@
     <h3>販売中</h3>
     <table class="table table-striped">
       <tr>
-	<th>Name</th>
-	<th>Num</th>
-	<th>Price</th>
-	<th>Buyer</th>
-	<th>Time</th>
+	<th>名前</th>
+	<th>数量</th>
+	<th>価格(円)</th>
+	<th>購入者(人)</th>
+	<th>時間</th>
         <th></th>
 	<th></th>
       </tr>
@@ -20,7 +20,7 @@
 	  <td><%= commodity.orders.count %></td>
           <td><%= commodity.created_at.strftime("%Y.%m.%d %H:%M") %></td>
 	  <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
-	  <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
+	  <td><%= link_to 'Cancel', commodity, confirm: 'Are you sure?', method: :delete %></td>
 	</tr>
       <% end %>
     </table>
@@ -33,11 +33,11 @@
     <h3>販売終了</h3>
     <table class="table table-striped">
       <tr>
-	<th>Name</th>
-	<th>Num</th>
-	<th>Price</th>
-	<th>Buyer</th>
-        <th>Time</th>
+	<th>名前</th>
+	<th>数量</th>
+	<th>価格(円)</th>
+	<th>購入者(人)</th>
+	<th>時間</th>
 	<th></th>
 	<th></th>
       </tr>
@@ -50,7 +50,6 @@
 	  <td><%= commodity.orders.count %></td>
           <td><%= commodity.created_at.strftime("%Y.%m.%d %H:%M") %></td>
 	  <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
-	  <td><%= link_to 'Destroy', commodity, confirm: 'Are you sure?', method: :delete %></td>
 	</tr>
       <% end %>
     </table>

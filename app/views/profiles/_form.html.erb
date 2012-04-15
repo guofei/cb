@@ -10,30 +10,32 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="alert alert-info">
+    自分の連絡先を入力してください
+  </div>
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :名前 %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%=label_tag :school %>
+    <%=label_tag :学校 %>
     <%= select_tag "school", options_from_collection_for_select(@schools, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label "Mail(なるべく学校のメールを使ってください)" %>
+    <%= f.label "メールアドレス(なるべく学校のメールを使ってください)" %>
     <%= f.text_field :mail %>
   </div>
   <div class="field">
-    <%= f.label "Tel(Option)" %>
+    <%= f.label "電話番号(Option)" %>
     <%= f.telephone_field :tel %>
   </div>
   <div class="actions">
     <%= f.submit "設定", :class => "btn" %>
   </div>
 <% end %>
-<div class="">
-  <p>出品者に対して:TelまたはMailは自分の商品の注文者しか見えません</p>
+<div class="well">
+  <p>注:</p>
+  <p>出品者に対して:電話番号またはメールアドレスは自分の商品の注文者しか見えません</p>
   <p>注文者に対して:自分が注文した商品の所有者が自分に商品を売るときしか見えません</p>
-  <p>自分のTelとMailはいつでも消去することができます</p>
-  <p>....操....</p>
+  <p>自分の電話番号とメールアドレスはいつでも消去することができます</p>
 </div>

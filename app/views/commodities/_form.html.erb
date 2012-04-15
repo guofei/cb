@@ -11,8 +11,12 @@
     </div>
   <% end %>
   <fieldset>
+  <div class="alert alert-info">
+    商品情報を入力してください
+  </div>
+
   <div class="control-group">
-    <%= f.label :名前, :class => "control-label" %>
+    <%= f.label :商品名, :class => "control-label" %>
     <div class="controls"><%= f.text_field :name %></div>
   </div>
   <div class="control-group">
@@ -37,8 +41,16 @@
     <%= f.hidden_field :photo_cache %></div>
   </div>
   <div class="control-group">
-    <%= f.label :価格, :class => "control-label" %>
+    <%= f.label '価格(円)', :class => "control-label" %>
     <div class="controls"><%= f.number_field :price %></div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="disabledInput">連絡先</label>
+    <div class="controls docs-input-sizes">
+      <input class="span3 disabled" id="disabledInput" type="text" placeholder="Name:<%= current_user.profile.name %>" disabled><br />
+      <input class="span3 disabled" id="disabledInput" type="text" placeholder="Mail:<%= current_user.profile.mail %>" disabled><br />
+      <input class="span3 disabled" id="disabledInput" type="text" placeholder="Tel:<%= current_user.profile.tel %>" disabled><br />
+    </div>
   </div>
   <div class="form-actions">
     <%= f.submit "Create", :class => "btn btn-primary" %>

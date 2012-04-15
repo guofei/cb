@@ -10,7 +10,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Tel</th>
-        <th>State</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -18,8 +18,8 @@
         <tr>
           <td><%= order.user.profile.name %></td>
 
-            <td><div id="mail"><%= if order.state then order.user.profile.mail else if order.user.profile.mail then "Hided" else "無し" end end  %></div></td>
-            <td><div id="tel"><%= if order.state then order.user.profile.tel else if order.user.profile.tel then "Hiden" else "無し" end end %></div></td>
+            <td><div id="Mail"><%= if order.state then order.user.profile.mail else if order.user.profile.mail then "Hided" else "無し" end end  %></div></td>
+            <td><div id="Tel"><%= if order.state then order.user.profile.tel else if order.user.profile.tel then "Hiden" else "無し" end end %></div></td>
             <% if !order.state %>
               <td><div id="state"><%= render 'orders/dealform', :order => order %></div></td>
             <% else %>

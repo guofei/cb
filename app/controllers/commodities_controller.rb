@@ -100,11 +100,13 @@ class CommoditiesController < ApplicationController
   # DELETE /commodities/1.json
   def destroy
     @commodity = Commodity.find(params[:id])
-    @commodity.destroy
+    @commodity.num = 0
 
     respond_to do |format|
-      format.html { redirect_to commodities_url }
-      format.json { head :no_content }
+      if @commodity.save
+        format.html { redirect_to commodities_url, notice: 'Commodity was successfully canceled.' }
+        format.json { render json: @commodity, status: :created, location: @commodity }
+      end
     end
   end
 end

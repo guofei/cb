@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CampusBox</title>
+    <title><%= content_for?(:title) ? content_for(:title) : "CampusBox"%></title>
     <%= csrf_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
