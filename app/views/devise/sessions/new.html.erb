@@ -1,13 +1,13 @@
 <div id="login">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "loginform"}) do |f| %>
-  <%= f.label :email %><br />
-  <%= f.email_field :email , :class => "loginfield"%><br />
+  <%= f.label :email %>
+  <%= f.email_field :email , :class => "loginfield"%>
 
-  <%= f.label :password %><br />
-  <%= f.password_field :password ,:class => "loginfield"%><br />
+  <%= f.label :password %>
+  <%= f.password_field :password ,:class => "loginfield"%>
 
   <% if devise_mapping.rememberable? -%>
-    <%= f.check_box :remember_me %> <%= f.label :remember_me %><br />
+    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
   <% end -%>
   <%= render "links" %>
   <%= f.submit "Sign in", :class => "button" %>

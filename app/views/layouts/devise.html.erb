@@ -17,10 +17,6 @@
             <li><%= link_to('Login with Twitter', omniauth_authorize_path(:user, :twitter)) %></li>
             <li><%= link_to('Login with Facebook', omniauth_authorize_path(:user, :facebook)) %></li>
           <% end %>
-          <% if user_signed_in? %>
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-            <%= link_to('My Profile', current_user.profile) %>
-          <% end %>
         </ul>
       </div>
       <!-- // header end -->

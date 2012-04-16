@@ -60,7 +60,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= if user_signed_in? then "Account" else "Login" end %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <% if user_signed_in? %>
-                    <li><%= link_to('連絡先', current_user.profile) %></li>
+                    <li><%= link_to('連絡先情報', current_user.profile) %></li>
                     <li class="divider"></li>
                     <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
                   <% end %>
