@@ -61,20 +61,25 @@ class CommoditiesController < ApplicationController
     @category = Category.first
     @commodity = Commodity.new(params[:commodity])
     @commodity.user = current_user
-
     category = Category.find(params[:category])
 
     respond_to do |format|
-      if @commodity.save
-        if category
-          @commodity.commodity_cates.create(:category => category)
-        end
-
-        format.html { redirect_to @commodity, notice: 'Commodity was successfully created.' }
-        format.json { render json: @commodity, status: :created, location: @commodity }
-      else
+      if params[:commodity][:photo].size > 2000000
+        @commodity.errors[:base] << "Photo size should < 2MB"
         format.html { render action: "new" }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
+      else
+        if @commodity.save
+          if category
+            @commodity.commodity_cates.create(:category => category)
+          end
+
+          format.html { redirect_to @commodity, notice: 'Commodity was successfully created.' }
+          format.json { render json: @commodity, status: :created, location: @commodity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @commodity.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -86,12 +91,18 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.find(params[:id])
 
     respond_to do |format|
-      if @commodity.update_attributes(params[:commodity])
-        format.html { redirect_to @commodity, notice: 'Commodity was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
+      if params[:commodity][:photo].size > 2000000
+        @commodity.errors[:base] << "Photo size should < 2MB"
+        format.html { render action: "new" }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
+      else
+        if @commodity.update_attributes(params[:commodity])
+          format.html { redirect_to @commodity, notice: 'Commodity was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @commodity.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

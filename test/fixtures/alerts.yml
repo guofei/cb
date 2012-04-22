@@ -1,11 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  commodity: 
-  user: 
+  commodity: 1
+  user: 1
   info: MyString
+  state: nil
 
 two:
-  commodity: 
-  user: 
+  commodity: 1
+  user: 2
   info: MyString
+  state: 0
+
+three:
+  commodity: 2
+  user:1
+  info: MyString
+  state: 1
