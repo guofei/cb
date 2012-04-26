@@ -1,18 +1,18 @@
-<div id="signUp">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "loginform" }) do |f| %>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.label :email %><br />
-  <%= f.email_field :email, :class => "loginfield" %><br />
+  <%= f.label :email %>
+  <%= f.email_field :email, :class => "loginfield" %>
 
-  <%= f.label :password %><br />
-  <%= f.password_field :password, :class => "loginfield" %><br />
+  <%= f.label :password %>
+  <%= f.password_field :password, :class => "loginfield" %>
 
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, :class => "loginfield" %><br />
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, :class => "loginfield" %>
 
   <%= f.submit "Next", :class => "button" %>
 <% end %>
 
-</div>
+

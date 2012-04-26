@@ -14,8 +14,8 @@
         <!-- ナビゲーション -->
         <ul class="header-navi">
           <% if !user_signed_in? %>
-            <li><%= link_to('Login with Twitter', omniauth_authorize_path(:user, :twitter)) %></li>
-            <li><%= link_to('Login with Facebook', omniauth_authorize_path(:user, :facebook)) %></li>
+            <li><b><%= link_to('Login with Twitter', omniauth_authorize_path(:user, :twitter)) %></b></li>
+            <li><b><%= link_to('Login with Facebook', omniauth_authorize_path(:user, :facebook)) %></b></li>
           <% end %>
         </ul>
       </div>

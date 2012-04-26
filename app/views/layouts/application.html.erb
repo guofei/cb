@@ -107,7 +107,12 @@
             <% end %>
           </div>
 
-          <% selected_id = 0 %>
+          <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">×</a>
+            <center>Start from University of Tsukuba</center>
+          </div>
+
+          <% selected_id = 1 %>
           <% selected_id = current_user.school.id if current_user.school if user_signed_in? %>
           <% if params[:action] == 'search' %>
             <div class="form-inline" align="center">

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   protect_from_forgery
@@ -20,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def all_schools
     @_schools = School.all
-    new_school =  School.new(:id => 0, :name => "All")
+    new_school =  School.new(:id => 0, :name => "全ての学校")
     new_school.id = 0
     @_schools << new_school
   end
