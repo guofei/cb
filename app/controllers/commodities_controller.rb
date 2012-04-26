@@ -63,8 +63,11 @@ class CommoditiesController < ApplicationController
     @commodity.user = current_user
     category = Category.find(params[:category])
 
+    size = 0
+    size = params[:commodity][:photo].size if params[:commodity][:photo]
+
     respond_to do |format|
-      if params[:commodity][:photo].size > 2000000
+      if size > 2000000
         @commodity.errors[:base] << "Photo size should < 2MB"
         format.html { render action: "new" }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
@@ -90,8 +93,11 @@ class CommoditiesController < ApplicationController
     @category = Category.first
     @commodity = Commodity.find(params[:id])
 
+    size = 0
+    size = params[:commodity][:photo].size if params[:commodity][:photo]
+
     respond_to do |format|
-      if params[:commodity][:photo].size > 2000000
+      if size > 2000000
         @commodity.errors[:base] << "Photo size should < 2MB"
         format.html { render action: "new" }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
