@@ -1,18 +1,20 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-
 gem "twitter-bootstrap-rails"
+gem "less-rails"
+
+
 gem "kaminari"
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 
+gem 'devise'
+gem 'devise-encryptable'
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
@@ -25,9 +27,19 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :production do
+  gem 'mysql2'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+  # gem 'rspec'
+  # gem 'rspec-rails'
 end
 
 gem 'jquery-rails'
@@ -45,5 +57,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'ruby-debug-base19', '0.11.26'
+gem 'debugger'

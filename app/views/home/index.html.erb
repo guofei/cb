@@ -75,7 +75,7 @@
             </thead>
 	    <tbody>
 	    <tr>
-	      <td><%= commodity.price %></td>
+	      <td><%= commodity.price %>円</td>
 	      <td><%= commodity.desc %></td>
 	      <td><%= image_tag(commodity.photo.thumb.url) if commodity.photo? %></td>
 	      <td nowrap="nowrap"><%= button_to '詳しい', commodity, :class => 'btn btn-info', :method => 'get' %></td>

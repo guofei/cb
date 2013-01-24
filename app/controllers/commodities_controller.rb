@@ -62,7 +62,7 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.new(params[:commodity])
     @commodity.user = current_user
     category = Category.find(params[:category])
-
+    debugger
     size = 0
     size = params[:commodity][:photo].size if params[:commodity][:photo]
 
