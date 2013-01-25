@@ -41,11 +41,14 @@ class CommoditiesController < ApplicationController
       @commodity.price = old_commodity.price
       @category = old_commodity.categories.first
     end
-    @category = Category.first if @category == nil
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @commodity }
+    @category = Category.first
+    if @category == nil
+      redirect_to commodities_path
+    else
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @commodity }
+      end
     end
   end
 
@@ -62,7 +65,7 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.new(params[:commodity])
     @commodity.user = current_user
     category = Category.find(params[:category])
-    debugger
+
     size = 0
     size = params[:commodity][:photo].size if params[:commodity][:photo]
 
