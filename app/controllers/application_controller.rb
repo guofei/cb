@@ -16,13 +16,13 @@ class ApplicationController < ActionController::Base
   end
 
   def all_categories
-    @_categories = Category.all
+    categories = Category.all
   end
 
   def all_schools
-    @_schools = School.all
+    schools = School.all
     new_school =  School.new(:id => 0, :name => "全ての学校")
     new_school.id = 0
-    @_schools << new_school
+    schools << new_school
   end
 end

@@ -11,7 +11,6 @@ class Commodity < ActiveRecord::Base
   has_many :alerts
   has_many :orders
   has_many :comments
-
   belongs_to :user
 
   def self.search(keywords)

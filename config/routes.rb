@@ -10,12 +10,9 @@ CampusBox::Application.routes.draw do
 
   resources :categories
 
-  resources :mypage, :only => :index
-
   resources :profiles, :except => :index
 
-  resource :home
-
+  match "home" => "home#index"
   match "search" => "home#search", :as => :search, :via => :get
 
   resources :orders do
@@ -36,9 +33,7 @@ CampusBox::Application.routes.draw do
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks"
-  } do
-    get "logout" => "devise/sessions#destroy"
-  end
+  }
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

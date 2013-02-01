@@ -125,7 +125,7 @@
           <% else %>
             <div class="form-inline" align="center">
               <%= form_tag("/search", :method => :get, :class => "form-search well", :id => "search") do %>
-                <div>買いたい商品を検索</div>
+                <div>商品検索</div>
                 <%= select_tag "school", options_from_collection_for_select(all_schools, :id, :name, :selected => selected_id), :class => 'span2' %>
                 <%= search_field_tag "keyword", nil, :class => 'span3 input-medium search-query' %>
                 <%= submit_tag "Search", :class => :btn %>

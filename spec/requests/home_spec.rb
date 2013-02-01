@@ -6,6 +6,7 @@ describe "Homes" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       get home_path
       response.status.should be(200)
+      assert_select "title", :text => "CampusBox"
     end
   end
 end
