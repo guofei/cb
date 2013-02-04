@@ -4,88 +4,84 @@
 
 <% title "CampusBox - #{@commodity.name}" %>
 
-<p id="notice"><%= notice %></p>
-
-<div class="">
-<div class="alert alert-info">
-  <%= @commodity.name %>
-</div>
-
-<p>
-  <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="true"></div><br />
-
-  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a><br />
-
+<div class="commodity">
+  <div class="alert alert-info">
+    <%= @commodity.name %>
+  </div>
   <%= link_to '同じ商品を出品する', new_commodity_path+"?id=#{@commodity.id}", :class => "btn btn-info btn-mini" %>
-</p>
+  <p>
+    <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="true"></div>
+    <div id="twitter">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+    </div>
+  </p>
 </div>
 
-<div class="">
-<div class="alert alert-info">
-  商品詳細
+<div class="commodity">
+  <div class="alert alert-info">
+    商品詳細
+  </div>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>出品時間：</td>
+        <td><%= @commodity.created_at.strftime("%Y.%m.%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <td>学校：</td>
+        <td><%= @commodity.user.school.name %></td>
+      </tr>
+      <tr>
+        <td>出品者：</td>
+        <td><%= @commodity.user.profile.name %></td>
+      </tr>
+      <tr>
+        <td>数量：</td>
+        <td><%= @commodity.num %></td>
+      </tr>
+      <tr>
+        <td>価格：</td>
+        <td><%= @commodity.price %>円</td>
+      </tr>
+      <tr>
+        <td>画像：</td>
+        <td><%= image_tag(@commodity.photo.url) if @commodity.photo? %></td>
+      </tr>
+      <tr>
+        <td>詳細情報：</td>
+        <td><%= @commodity.desc %></td>
+      </tr>
+      <tr>
+        <td>取引場所：</td>
+        <td><%= @commodity.place %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<p>
-  <b>出品時間：</b>
-  <%= @commodity.created_at.strftime("%Y.%m.%d %H:%M") %>
-</p>
 
-<p>
-  <b>学校：</b>
-  <%= @commodity.user.school.name %>
-</p>
-
-<p>
-  <b>出品者：</b>
-  <%= @commodity.user.profile.name %>
-</p>
-
-<p>
-  <b>数量:</b>
-  <%= @commodity.num %>
-</p>
-
-<p>
-  <b>価格:</b>
-  <%= @commodity.price %>円
-</p>
-
-<p>
-  <b>取引場所:</b>
-  <%= @commodity.place %>
-</p>
-
-<p>
-  <b>詳細情報:</b>
-  <%= @commodity.desc %>
-</p>
-
-<p>
-  <b>画像:</b><br />
-  <%= image_tag(@commodity.photo.url) if @commodity.photo? %>
-</p>
-
-<p><b>連絡先:</b></p>
-<div id="order">
-
-  <% if i == 'buyer' or i == 'seller' %>
-    <p>Mail:<%= @commodity.user.profile.mail %></p>
-    <p>Tel:<%= @commodity.user.profile.tel %></p>
-    <% if i == 'buyer' %>
-      <div class="alert  alert-success">出品者に連絡してくだい</div>
-    <% end %>
-  <% else %>
-    <p>注文者のみ見られます</p>
-  <% end %>
-
-  <% if i != 'seller' and i != 'buyer' %>
-    <% if user_signed_in? %>
-      <%= render 'orders/form', :order => @order, :re => true %>
+<div class="commodity">
+  <div class="alert alert-info">
+    連絡先
+  </div>
+  <div id="order">
+    <% if i == 'buyer' or i == 'seller' %>
+      <p>Mail:<%= @commodity.user.profile.mail %></p>
+      <p>Tel:<%= @commodity.user.profile.tel %></p>
+      <% if i == 'buyer' %>
+        <div class="alert  alert-success">出品者に連絡してくだい</div>
+      <% end %>
     <% else %>
-      <%= render 'orders/form', :order => @order, :re => false %>
+      <p>注文者のみ見られます</p>
     <% end %>
-</div>
-<% end %>
 
+    <% if i != 'seller' and i != 'buyer' %>
+      <% if user_signed_in? %>
+        <%= render 'orders/form', :order => @order, :re => true %>
+      <% else %>
+        <%= render 'orders/form', :order => @order, :re => false %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <% if i == 'seller' %>

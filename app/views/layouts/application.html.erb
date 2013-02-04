@@ -48,12 +48,13 @@
             </ul>
             <ul class="nav pull-right">
               <li><%= link_to('出品する', :new_commodity) %></li>
-              <li><%= link_to('出品一覧', :commodities) %></li>
               <li class="divider-vertical"></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= if user_signed_in? then if current_user.profile then "#{current_user.profile.name}様" end else "Login" end %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <% if user_signed_in? %>
+                    <li><%= link_to('出品一覧', :commodities) %></li>
+                    <li class="divider"></li>
                     <li><%= link_to('注文一覧', orders_path(:mode => "new")) %></li>
                     <li><%= link_to('購入履歴', orders_path(:mode => "old")) %></li>
                     <li class="divider"></li>
@@ -103,11 +104,6 @@
                 </div>
               <% end %>
             <% end %>
-          </div>
-
-          <div class="alert alert-success">
-            <a class="close" data-dismiss="alert">×</a>
-            <center>Start from University of Tsukuba</center>
           </div>
 
           <% selected_id = 1 %>
