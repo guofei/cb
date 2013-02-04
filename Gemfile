@@ -5,8 +5,8 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "twitter-bootstrap-rails"
-gem "less-rails"
+gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+# gem "less-rails"
 
 
 gem "kaminari"
