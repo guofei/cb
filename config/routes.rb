@@ -1,10 +1,7 @@
 CampusBox::Application.routes.draw do
-  namespace :admins do
-    resources :categories
-    resources :schools
-    resources :populars
-    resources :profiles
-  end
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :alerts, :only => [:index, :destroy]
 
@@ -26,10 +23,6 @@ CampusBox::Application.routes.draw do
   resources :commoditycates
 
   resources :ordercommodities
-
-  devise_for :admins, :controllers => {
-    :sessions => "admins/sessions"
-  }
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks"
