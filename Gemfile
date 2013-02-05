@@ -8,6 +8,7 @@ gem 'rails', '3.2.11'
 gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 # gem "less-rails"
 
+gem 'activeadmin'
 
 gem "kaminari"
 gem 'carrierwave'
