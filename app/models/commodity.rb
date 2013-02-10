@@ -14,14 +14,11 @@ class Commodity < ActiveRecord::Base
   belongs_to :user
 
   def self.search(keywords)
-    con = ""
-    i = 0
-    keywords.each { |keyword|
-      con = "name like '%#{keyword}%' " if i == 0
-      con += "or name like '%#{keyword}%' " if i > 0
-      i += 1
-    }
-    con += "AND num > 0"
-    where(con)
+    @keywords = keywords.class == String ? [keywords] : keywords
+    sql = @keywords.inject("") do |sql, keyword|
+      sql = sql == "" ? sql + "name like '%#{keyword}%' " : sql + "or name like '%#{keyword}%' "
+    end
+    sql += "AND num > 0"
+    where(sql)
   end
 end
