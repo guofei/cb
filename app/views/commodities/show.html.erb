@@ -37,13 +37,13 @@
   </div>
   <div id="order">
     <% if i == 'buyer' or i == 'seller' %>
-      <p>Mail:<%= @commodity.user.profile.mail %></p>
-      <p>Tel:<%= @commodity.user.profile.tel %></p>
+      <p><b>Email:</b><%= @commodity.user.profile.mail %></p>
+      <p><b>電話番号:</b><%= @commodity.user.profile.tel %></p>
       <% if i == 'buyer' %>
-        <div class="alert  alert-success">出品者に連絡してくだい</div>
+        <p>出品者に連絡してくだい</p>
       <% end %>
     <% else %>
-      <p>注文者のみ見られます</p>
+      <p>出品者と連絡先を交換した後に見られます</p>
     <% end %>
 
     <% if i != 'seller' and i != 'buyer' %>
@@ -63,6 +63,7 @@
 <%= render 'commentsofcommodity' %>
 
 <%= render 'comments/form' %>
-
-<%= link_to 'Edit', edit_commodity_path(@commodity) %> |
+<% if i == 'seller' %>
+  <%= link_to 'Edit', edit_commodity_path(@commodity) %> |
+<% end %>
 <%= link_to 'Back', commodities_path %>
