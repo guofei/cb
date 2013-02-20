@@ -8,6 +8,22 @@ describe School do
     @s3 = School.create!(name: 'kyoto u', city: 'kyoto', region: '関西')
   end
 
+  it 'get all commodities' do
+    user1 = User.create!(email: 'kk@kk.com', password: '123456')
+    user1.school = @s1
+    user1.save
+    user2 = User.create!(email: 'kk2@kk.com', password: '123456')
+    user2.school = @s1
+    user2.save
+
+    c1 = Commodity.create!(name: 'aaa', num: 2, desc: 'aaa', price: 100, user: user1, place: 'school')
+    c2 = Commodity.create!(name: 'bbb', num: 2, desc: 'bbb', price: 100, user: user2, place: 'school')
+    c3 = Commodity.create!(name: 'ccc', num: 2, desc: 'ccc', price: 100, user: user1, place: 'school')
+    c4 = Commodity.create!(name: 'ddd', num: 2, desc: 'ddd', price: 100, user: user1, place: 'school')
+
+    expect(@s1.commodities).to eq([c4, c3, c2, c1])
+  end
+
   it 'can get all regions' do
     expect(School.regions).to eq([@s1.region, @s3.region])
   end

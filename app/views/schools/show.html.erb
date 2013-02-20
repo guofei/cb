@@ -1,0 +1,54 @@
+<div class="row-fluid">
+  <div class="">
+
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#"><%= @school.name %></a></li>
+      <% School.regions.each do |region| %>
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><%= region %><b class="caret"></b></a>
+          <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+            <% School.region(region).each do |school| %>
+              <li role="presentation"><%= link_to school.name, school_path(school), :tabindex => "-1", :role => "menuitem" %></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul> <!-- /tabs -->
+  </div>
+
+  <div class="accordion" id="popular">
+    <% i = 0 %>
+    <% @school.commodities.each do |commodity| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#popular" href="#collapse<%= i %>">
+	    <%= commodity.name %>
+          </a>
+        </div>
+	<div id="collapse<%= i %>" class="accordion-body collapse">
+          <div class="accordion-inner">
+	    <table class="table">
+              <thead>
+                <tr>
+		  <th nowrap="nowrap">価格</th>
+		  <th nowrap="nowrap">詳細情報</th>
+		  <th nowrap="nowrap">画像</th>
+		  <th></th>
+                </tr>
+              </thead>
+	      <tbody>
+	        <tr>
+	          <td><%= commodity.price %></td>
+	          <td><%= commodity.desc %></td>
+	          <td><%= image_tag(commodity.photo.thumb.url) if commodity.photo? %></td>
+	          <td nowrap="nowrap"><%= button_to '詳しい', commodity, :class => 'btn btn-info', :method => 'get' %></td>
+	        </tr>
+	      </tbody>
+	    </table>
+          </div>
+        </div>
+      </div>
+      <% i+=1 %>
+    <% end %>
+  </div>
+</div>

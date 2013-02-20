@@ -12,6 +12,8 @@ CampusBox::Application.routes.draw do
   match "home" => "home#index"
   match "search" => "home#search", :as => :search, :via => :get
 
+  resources :schools, :only => [:show]
+
   resources :orders do
     post 'deal', :on => :member
   end
